@@ -1,6 +1,6 @@
-package ChatRoomServer;
+package Server.ChatRoomServer;
 
-import ChatRoomClient.ChatListener;
+import Client.ChatRoomListener.Listener;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -9,15 +9,15 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-public class ChatRoomImpl extends UnicastRemoteObject implements ChatRoom {
-    private HashMap<String, ChatListener> users;
+public class RoomImpl extends UnicastRemoteObject implements Room {
+    private HashMap<String, Listener> users;
     //Define the status codes
     private static final int ok = 200;
     private static final int already_exists = 409;
 
-    public ChatRoomImpl () throws RemoteException {
+    public RoomImpl() throws RemoteException {
         //initialize an empty listener hashmap
-        users = new HashMap<String, ChatListener>();
+        users = new HashMap<String, Listener>();
     }
 
 
@@ -27,7 +27,7 @@ public class ChatRoomImpl extends UnicastRemoteObject implements ChatRoom {
         while (it.hasNext()) {
             Map.Entry pair = (Map.Entry)it.next();
 
-            ChatListener listener = (ChatListener)pair.getValue();
+            Listener listener = (Listener)pair.getValue();
             listener.newMessage(sender, message);
         }
     }
@@ -38,7 +38,7 @@ public class ChatRoomImpl extends UnicastRemoteObject implements ChatRoom {
 
         for (String reciever: recievers) {
             try {
-                ChatListener listener = users.get(reciever);
+                Listener listener = users.get(reciever);
                 listener.newMessage(sender, message);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -47,7 +47,7 @@ public class ChatRoomImpl extends UnicastRemoteObject implements ChatRoom {
     }
 
     @Override
-    public int addUser(String userName, ChatListener listener) throws RemoteException {
+    public int addUser(String userName, Listener listener) throws RemoteException {
         try {
             //Check if th userName already exists in the users list
             if (users.containsKey(userName)) {

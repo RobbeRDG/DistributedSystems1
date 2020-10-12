@@ -1,8 +1,8 @@
-package ChatRoomClient;
+package Client.ChatRoomListener;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
-public interface ChatListener extends Remote {
+public interface Listener extends Remote {
     void newMessage(String user, String Message) throws RemoteException;
 }

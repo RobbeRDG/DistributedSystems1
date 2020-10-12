@@ -1,6 +1,7 @@
-package ChatRoomClient;
+package Client.ChatRoomListener;
 
-import ChatRoomServer.ChatRoom;
+import Server.ChatRoomServer.Room;
+
 
 import java.net.MalformedURLException;
 import java.rmi.NotBoundException;
@@ -11,22 +12,14 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class ClientMain extends UnicastRemoteObject implements ChatListener{
+public class ListenerImpl extends UnicastRemoteObject implements Listener {
 
-    protected ClientMain() throws RemoteException {
+    protected ListenerImpl() throws RemoteException {
     }
 
+
+
     public static void main(String[] args) throws RemoteException, NotBoundException, MalformedURLException {
-        // Fire to localhost port 2222
-        Registry myRegistry = LocateRegistry.getRegistry("localhost", 2222);
-
-        // Initialize the chatroom
-        ChatRoom room = (ChatRoom) myRegistry.lookup("ChatService");
-
-
-        //Initialize the chatListener
-        ClientMain listener = new ClientMain();
-
         //Create a new unique user
         String userName = "Untitled";
         boolean user_created = false;
@@ -45,6 +38,7 @@ public class ClientMain extends UnicastRemoteObject implements ChatListener{
                 System.out.println("User already exists");
             }
         }
+
 
         //Create a welcome message
         room.broadcastMessage(userName, userName + " joined the chat");

@@ -1,25 +1,22 @@
-package ChatRoomServer;
+package Server.ChatRoomServer;
 
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
-public class ServerMain {
+public class ChatRoomServer {
 
-    private void startServer() {
+    public void startServer() {
         try {
             // Create on port 2222
             Registry registry = LocateRegistry.createRegistry(2222);
 
             // Create a new service named CounterService
-            registry.rebind("ChatService", new ChatRoomImpl());
+            registry.rebind("ChatService", new RoomImpl());
         } catch (Exception e) {
             e.printStackTrace();
         }
         System.out.println("System is ready");
     }
 
-    public static void main(String[] args) {
-        ServerMain serverMain = new ServerMain();
-        serverMain.startServer();
-    }
+
 }
