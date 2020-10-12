@@ -1,5 +1,6 @@
 package Client.ChatRoomListener;
 
+import Client.GUI.GUI;
 import Server.ChatRoomServer.Room;
 
 
@@ -13,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ListenerImpl extends UnicastRemoteObject implements Listener {
+    private GUI guiController;
 
     protected ListenerImpl() throws RemoteException {
     }
@@ -29,8 +31,8 @@ public class ListenerImpl extends UnicastRemoteObject implements Listener {
             userName = sc.nextLine();
 
             //verify if the user doesn't already exist
-            int statuscode = room.addUser(userName, listener);
-
+            //int statuscode = room.addUser(userName, listener);
+            int statuscode = 200;
             if (statuscode == 200) {
                 System.out.println("User has been created");
                 user_created = true;
@@ -41,7 +43,7 @@ public class ListenerImpl extends UnicastRemoteObject implements Listener {
 
 
         //Create a welcome message
-        room.broadcastMessage(userName, userName + " joined the chat");
+        //room.broadcastMessage(userName, userName + " joined the chat");
         ArrayList<String> recievers = new ArrayList<>();
         recievers.add("test");
         //room.sendMessageTo(recievers, userName, "hello");
@@ -59,8 +61,12 @@ public class ListenerImpl extends UnicastRemoteObject implements Listener {
 
     }
 
+    public void setGuiController(GUI guiController) {
+        this.guiController = guiController;
+    }
+
     @Override
     public void newMessage(String user, String message) throws RemoteException {
-        System.out.println(message);
+        guiController.addMessage(String user, String message);
     }
 }

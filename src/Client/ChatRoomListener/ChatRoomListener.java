@@ -6,8 +6,11 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.util.List;
 
 public class ChatRoomListener {
+    private Room chatRoom;
+    private Listener listener;
     public ChatRoomListener(){
     }
 
@@ -17,9 +20,19 @@ public class ChatRoomListener {
 
         // Initialize the chatroom
         Room room = (Room) myRegistry.lookup("ChatService");
+        chatRoom = room;
 
 
         //Initialize the chatListener
         ListenerImpl listener = new ListenerImpl();
+        this.listener = listener;
+    }
+
+    public Room getChatRoom() {
+        return chatRoom;
+    }
+
+    public Listener getListener() {
+        return listener;
     }
 }
