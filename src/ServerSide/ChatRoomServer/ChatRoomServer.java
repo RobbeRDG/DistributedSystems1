@@ -1,4 +1,4 @@
-package Server.ChatRoomServer;
+package ServerSide.ChatRoomServer;
 
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;

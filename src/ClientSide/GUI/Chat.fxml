@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 
 <?import java.awt.ScrollPane?>
-<TitledPane animated="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" text="Chat" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.GUI.ChatController">
+<TitledPane animated="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" text="Chat" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ClientSide.GUI.ChatController">
    <content>
       <SplitPane dividerPositions="0.3" prefHeight="160.0" prefWidth="200.0">
          <items>

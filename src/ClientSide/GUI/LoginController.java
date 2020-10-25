@@ -1,16 +1,11 @@
-package Client.GUI;
+package ClientSide.GUI;
 
-import Client.ChatRoomListener.Listener;
-import Server.ChatRoomServer.Room;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.GridPane;
 
-import java.awt.*;
 import java.io.IOException;
-import java.rmi.RemoteException;
 
 public class LoginController {
     private GUI guiController;
@@ -36,7 +31,7 @@ public class LoginController {
         }
 
         //test if the username is still available
-        int statusCode = guiController.getChatRoom().addUser(userName, guiController.getListener());
+        int statusCode = guiController.addUser(userName);
 
         if (statusCode != 200) {
             Alert alert = new Alert(Alert.AlertType.ERROR);

@@ -1,4 +1,4 @@
-package Client.GUI;
+package ClientSide.GUI;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;

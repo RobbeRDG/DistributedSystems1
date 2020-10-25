@@ -1,6 +1,6 @@
-package Server;
+package ServerSide;
 
-import Server.ChatRoomServer.ChatRoomServer;
+import ServerSide.ChatRoomServer.ChatRoomServer;
 
 public class Main {
     public static void main(String[] args) {
