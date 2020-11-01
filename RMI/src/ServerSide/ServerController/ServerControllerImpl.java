@@ -80,7 +80,7 @@ public class ServerControllerImpl implements ServerController{
                 return ok;
             }
         } catch (Exception e) {
-            System.out.println("Couldn't create the user");
+            System.out.println("Couldn't create the user " + userName);
             e.printStackTrace();
             return error;
         }
@@ -103,7 +103,7 @@ public class ServerControllerImpl implements ServerController{
             }
 
         } catch(Exception e) {
-            System.out.println("User couldn't be deleted");
+            System.out.println(userName + " couldn't be deleted");
             e.printStackTrace();
         }
         System.out.println(userName + " has been deleted");
@@ -132,6 +132,8 @@ public class ServerControllerImpl implements ServerController{
 
             //Notify all subscribers from that chat with the new Message
             chatUpdate(chatId);
+
+            System.out.println("New message recieved ( " + message.toString() +" )");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -161,6 +163,7 @@ public class ServerControllerImpl implements ServerController{
             //notify the subscribers of the new chat
             chatUpdate(chatId);
 
+            System.out.println("New chat created: " + chatName);
         } catch (Exception e) {
             e.printStackTrace();
         }
