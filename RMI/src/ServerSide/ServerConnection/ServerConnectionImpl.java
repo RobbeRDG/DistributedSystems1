@@ -58,6 +58,7 @@ public class ServerConnectionImpl extends UnicastRemoteObject implements ServerC
         controller.removeUser(userName);
     }
 
+    @Override
     public ArrayList<String> getOnlineUsers() throws RemoteException {
         return controller.getOnlineUsers();
     }
