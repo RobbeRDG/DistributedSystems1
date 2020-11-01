@@ -10,6 +10,8 @@ import ServerSide.ServerConnection.ServerConnection;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 public class ClientConnection {
@@ -72,6 +74,23 @@ public class ClientConnection {
     public void sendMessage(ChatMessage message, String tabId) {
         try {
             serverConnection.sendMessage(message, UUID.fromString(tabId));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public ArrayList<String> getOnlineUsers() {
+        try {
+            return serverConnection.getOnlineUsers();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public void createChat(String userName, String chatName, ArrayList<String> chatUsers) {
+        try {
+            serverConnection.createChat(userName, chatName, chatUsers);
         } catch (Exception e) {
             e.printStackTrace();
         }

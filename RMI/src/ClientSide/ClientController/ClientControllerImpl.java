@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 public class ClientControllerImpl extends Application implements ClientController {
@@ -160,6 +161,11 @@ public class ClientControllerImpl extends Application implements ClientControlle
     }
 
     @Override
+    public String getUser() {
+        return userName;
+    }
+
+    @Override
     public void sendMessage(String messageText, String tabId) {
         //Create the new message
         ChatMessage message = new ChatMessage(userName, messageText);
@@ -175,5 +181,25 @@ public class ClientControllerImpl extends Application implements ClientControlle
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public ArrayList<String> getOnlineUsers() {
+        try {
+            ArrayList<String> onlineUsers = connection.getOnlineUsers();
+
+            //Remove this user
+            onlineUsers.remove(userName);
+
+            return onlineUsers;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
+    public void createChat(String chatName, ArrayList<String> chatUsers) {
+        connection.createChat(userName, chatName, chatUsers);
     }
 }

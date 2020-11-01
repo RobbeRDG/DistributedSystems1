@@ -43,4 +43,8 @@ public class Chat implements Serializable {
     public String getName() {
         return name;
     }
+
+    public void addSubscribers(ArrayList<String> subscribers) {
+        this.subscribers.addAll(subscribers);
+    }
 }

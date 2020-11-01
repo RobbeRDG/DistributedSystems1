@@ -12,6 +12,6 @@
         <tabs>
         </tabs>
     </TabPane>
-    <Button AnchorPane.topAnchor="10.0" AnchorPane.rightAnchor="10.0" fx:id="newChatButton" text="Add Chat"/>
+    <Button fx:id="addChatButton" onAction="#handleAddChatButton" AnchorPane.topAnchor="10.0" AnchorPane.rightAnchor="10.0"  text="Add Chat"/>
 </AnchorPane>
 

@@ -56,7 +56,7 @@ public class ServerControllerImpl implements ServerController{
 
 
     //###############################################################################################################
-    //      AUTHENTICATION
+    //      USER HANDLING TO SERVER
     //###############################################################################################################
     @Override
     public int addUser(String userName, ClientListener clientListener) {
@@ -92,21 +92,17 @@ public class ServerControllerImpl implements ServerController{
             //remove user from the users hashmap
             users.remove(userName);
 
-            //Remove tha user from all his subscriptions
-            for( Chat chat: chats.values()) {
-                if (chat.getSubscribers().contains(userName)) {
-                    chat.getSubscribers().remove(userName);
-
-                    //update the new chat
-                    chatUpdate(chat.getId());
-                }
-            }
 
         } catch(Exception e) {
             System.out.println("User couldn't be deleted");
             e.printStackTrace();
         }
         System.out.println(userName + " has been deleted");
+    }
+
+    @Override
+    public ArrayList<String> getOnlineUsers() {
+        return new ArrayList<>(users.keySet());
     }
 
 
@@ -132,7 +128,8 @@ public class ServerControllerImpl implements ServerController{
         }
     }
 
-    public void createChat(String userName, String chatName, ArrayList<String> subscribers) {
+    @Override
+    public void createChat(String userName, String chatName, ArrayList<String> subscribers) throws Exception {
         try {
             //find if the user exist
             if(!users.containsKey(userName)) throw new Exception("User does not exist");
@@ -147,16 +144,19 @@ public class ServerControllerImpl implements ServerController{
             subscribers.add(userName);
 
             //set each user as subscriber in the chat
-
+            chat.addSubscribers(subscribers);
 
             //Add the chat to the chat hashmap
             chats.put(chatId, chat);
 
             //notify the subscribers of the new chat
+            chatUpdate(chatId);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
 
 
     //###############################################################################################################
@@ -170,7 +170,11 @@ public class ServerControllerImpl implements ServerController{
             //for each subscriber of that chat, send the new updated chat object to the listener of that user
             for( String userName: chat.getSubscribers()) {
                 //find the corresponding listener
-                users.get(userName).getClientListener().chatUpdate(chat);
+                try {
+                    users.get(userName).getClientListener().chatUpdate(chat);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();

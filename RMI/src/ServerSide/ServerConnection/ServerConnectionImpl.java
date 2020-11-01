@@ -40,7 +40,8 @@ public class ServerConnectionImpl extends UnicastRemoteObject implements ServerC
     }
 
     @Override
-    public void createChat(String userName, String chatName, String[] subscribers) throws RemoteException {
+    public void createChat(String userName, String chatName, ArrayList<String> subscribers) throws Exception {
+        controller.createChat(userName, chatName, subscribers);
     }
 
     //###############################################################################################################
@@ -56,5 +57,10 @@ public class ServerConnectionImpl extends UnicastRemoteObject implements ServerC
     public void removeUser(String userName) throws RemoteException {
         controller.removeUser(userName);
     }
+
+    public ArrayList<String> getOnlineUsers() throws RemoteException {
+        return controller.getOnlineUsers();
+    }
+
 
 }
