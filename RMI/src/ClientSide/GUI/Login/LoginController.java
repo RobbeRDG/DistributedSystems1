@@ -1,14 +1,17 @@
-package ClientSide.GUI;
+package ClientSide.GUI.Login;
 
+import ClientSide.ClientController.ClientController;
+import ClientSide.ClientController.ClientControllerImpl;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
+import java.io.Serializable;
 
 public class LoginController {
-    private GUI guiController;
+    private ClientController clientController;
 
     @FXML
     TextField nameField;
@@ -31,7 +34,7 @@ public class LoginController {
         }
 
         //test if the username is still available
-        int statusCode = guiController.addUser(userName);
+        int statusCode = clientController.addUser(userName);
 
         if (statusCode != 200) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -41,12 +44,12 @@ public class LoginController {
             alert.show();
             return;
         } else {
-            guiController.showChat();
+            clientController.showChat();
         }
     }
 
 
-    public void setGuiController(GUI guiController) {
-        this.guiController = guiController;
+    public void setGuiController(ClientController clientController) {
+        this.clientController = clientController;
     }
 }

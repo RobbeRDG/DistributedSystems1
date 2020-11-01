@@ -1,15 +1,24 @@
 package Objects;
 
-public class ChatMessage {
-    private ChatUser sender;
+import java.io.Serializable;
+import java.rmi.Remote;
+
+public class ChatMessage implements Remote, Serializable {
+    private static final long serialVersionUID = 6L;
+
+    private String sender;
     private String messageText;
 
-    public ChatMessage(ChatUser sender, String messageText) {
+    public ChatMessage(String sender, String messageText) {
         this.sender = sender;
         this.messageText = messageText;
     }
 
     public String toString() {
-        return (sender.getName() + " : " + messageText);
+        return (sender + " : " + messageText);
+    }
+
+    public String getSender() {
+        return sender;
     }
 }

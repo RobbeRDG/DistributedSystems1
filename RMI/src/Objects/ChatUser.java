@@ -1,26 +1,21 @@
 package Objects;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.UUID;
+import ClientSide.ClientConnection.Listener.ClientListener;
 
 public class ChatUser {
-    private String name;
-    private ArrayList<UUID> subscriptionIds;
+    private String name;private ClientListener clientListener;
 
-    public ChatUser(String name) {
+    public ChatUser(String name, ClientListener clientListener) {
         this.name = name;
+        this.clientListener = clientListener;
     }
 
     public String getName() {
         return name;
     }
 
-    public void addSubscriptionId(UUID chatId) {
-        subscriptionIds.add(chatId);
-    }
 
-    public ArrayList<UUID> getSubscriptionIds() {
-        return subscriptionIds;
+    public ClientListener getClientListener() {
+        return clientListener;
     }
 }
