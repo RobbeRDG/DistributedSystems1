@@ -92,6 +92,15 @@ public class ServerControllerImpl implements ServerController{
             //remove user from the users hashmap
             users.remove(userName);
 
+            //Remove tha user from all his subscriptions
+            for( Chat chat: chats.values()) {
+                if (chat.getSubscribers().contains(userName)) {
+                    chat.getSubscribers().remove(userName);
+
+                    //update the new chat
+                    chatUpdate(chat.getId());
+                }
+            }
 
         } catch(Exception e) {
             System.out.println("User couldn't be deleted");
@@ -170,11 +179,7 @@ public class ServerControllerImpl implements ServerController{
             //for each subscriber of that chat, send the new updated chat object to the listener of that user
             for( String userName: chat.getSubscribers()) {
                 //find the corresponding listener
-                try {
-                    users.get(userName).getClientListener().chatUpdate(chat);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+                users.get(userName).getClientListener().chatUpdate(chat);
             }
         } catch (Exception e) {
             e.printStackTrace();
