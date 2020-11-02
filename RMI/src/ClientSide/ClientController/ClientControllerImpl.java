@@ -5,14 +5,17 @@ import ClientSide.GUI.Chat.ChatWindowController;
 import ClientSide.GUI.Login.LoginController;
 import Objects.Chat;
 import Objects.ChatMessage;
+import Objects.ServerLogicException;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -41,25 +44,30 @@ public class ClientControllerImpl extends Application implements ClientControlle
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        //set the primary stage
-        this.primaryStage = primaryStage;
+        try {
+            //set the primary stage
+            this.primaryStage = primaryStage;
 
-        //initialize the subscriptions
-        subscriptionIds = new ArrayList<>();
+            //initialize the subscriptions
+            subscriptionIds = new ArrayList<>();
 
-        //initialize the connection
-        connection = new ClientConnection();
-        //Pass the ClientMain to the connection for callbacks
-        connection.setClientController(this);
+            //initialize the connection
+            connection = new ClientConnection();
+            //Pass the ClientMain to the connection for callbacks
+            connection.setClientController(this);
 
-        //connect to the chatRoom server
-        connectToServer();
+            //connect to the chatRoom server
+            connectToServer();
 
-        //load the chat and login controller
-        loadControllers();
+            //load the chat and login controller
+            loadControllers();
 
-        //show the login screen
-        showLogin();
+            //show the login screen
+            showLogin();
+        } catch (Exception e) {
+            handleException(e);
+        }
+
     }
     private void connectToServer() {
         try {
@@ -123,9 +131,16 @@ public class ClientControllerImpl extends Application implements ClientControlle
 
 
     @Override
-    public int addUser(String userName) {
-        this.userName = userName;
-        return connection.addUser(userName);
+    public void addUser(String userName) throws ServerLogicException, Exception {
+        try {
+            this.userName = userName;
+            connection.addUser(userName);
+        } catch (ServerLogicException e) {
+            throw e;
+        } catch (Exception e) {
+            handleException(e);
+            throw e;
+        }
     }
 
     @Override
@@ -201,5 +216,16 @@ public class ClientControllerImpl extends Application implements ClientControlle
     @Override
     public void createChat(String chatName, ArrayList<String> chatUsers) {
         connection.createChat(userName, chatName, chatUsers);
+    }
+
+    private void handleException(Exception e) {
+        //generate an error alert
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+
+        alert.setTitle("Error Dialog");
+        alert.setHeaderText("Something went wrong");
+        alert.setContentText(e.getLocalizedMessage());
+
+        alert.showAndWait();
     }
 }

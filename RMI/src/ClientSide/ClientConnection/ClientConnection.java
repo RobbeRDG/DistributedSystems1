@@ -5,13 +5,13 @@ import ClientSide.ClientConnection.Listener.ClientListenerImpl;
 import ClientSide.ClientController.ClientController;
 import Objects.Chat;
 import Objects.ChatMessage;
+import Objects.ServerLogicException;
 import ServerSide.ServerConnection.ServerConnection;
 
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
 public class ClientConnection {
@@ -41,17 +41,8 @@ public class ClientConnection {
         }
     }
 
-    public int addUser(String userName) {
-        int noResponse = 444;
-        int statusCode = noResponse;
-
-        try {
-            statusCode = serverConnection.addUser(userName, clientListener);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return statusCode;
+    public void addUser(String userName) throws ServerLogicException, RemoteException {
+        serverConnection.addUser(userName, clientListener);
     }
 
 

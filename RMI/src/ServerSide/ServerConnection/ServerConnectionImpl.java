@@ -2,6 +2,7 @@ package ServerSide.ServerConnection;
 
 import ClientSide.ClientConnection.Listener.ClientListener;
 import Objects.ChatMessage;
+import Objects.ServerLogicException;
 import ServerSide.ServerController.ServerController;
 
 import java.rmi.RemoteException;
@@ -16,6 +17,7 @@ public class ServerConnectionImpl extends UnicastRemoteObject implements ServerC
 
 
     public ServerConnectionImpl(ServerController controller) throws RemoteException {
+        super();
         this.controller = controller;
     }
 
@@ -35,12 +37,12 @@ public class ServerConnectionImpl extends UnicastRemoteObject implements ServerC
 
 
     @Override
-    public void sendMessage(ChatMessage message, UUID chatId) throws RemoteException {
+    public void sendMessage(ChatMessage message, UUID chatId) throws ServerLogicException {
         controller.sendMessage(message, chatId);
     }
 
     @Override
-    public void createChat(String userName, String chatName, ArrayList<String> subscribers) throws Exception {
+    public void createChat(String userName, String chatName, ArrayList<String> subscribers) throws ServerLogicException {
         controller.createChat(userName, chatName, subscribers);
     }
 
@@ -49,17 +51,17 @@ public class ServerConnectionImpl extends UnicastRemoteObject implements ServerC
     //###############################################################################################################
 
     @Override
-    public int addUser(String userName, ClientListener clientListener) throws RemoteException {
-        return controller.addUser(userName, clientListener);
+    public void addUser(String userName, ClientListener clientListener) throws ServerLogicException {
+        controller.addUser(userName, clientListener);
     }
 
     @Override
-    public void removeUser(String userName) throws RemoteException {
+    public void removeUser(String userName) throws ServerLogicException {
         controller.removeUser(userName);
     }
 
     @Override
-    public ArrayList<String> getOnlineUsers() throws RemoteException {
+    public ArrayList<String> getOnlineUsers() throws ServerLogicException {
         return controller.getOnlineUsers();
     }
 

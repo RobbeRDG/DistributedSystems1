@@ -2,6 +2,7 @@ package ClientSide.GUI.Login;
 
 import ClientSide.ClientController.ClientController;
 import ClientSide.ClientController.ClientControllerImpl;
+import Objects.ServerLogicException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -34,17 +35,18 @@ public class LoginController {
         }
 
         //test if the username is still available
-        int statusCode = clientController.addUser(userName);
-
-        if (statusCode != 200) {
+        try {
+            clientController.addUser(userName);
+            clientController.showChat();
+        } catch (ServerLogicException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setHeaderText(null);
             alert.setContentText("Name is already taken");
             alert.show();
             return;
-        } else {
-            clientController.showChat();
+        } catch (Exception e) {
+            return;
         }
     }
 

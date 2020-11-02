@@ -8,7 +8,7 @@
       <ListView fx:id="subscribersListView" prefHeight="200.0" prefWidth="200.0" />
       <AnchorPane prefHeight="200.0" prefWidth="200.0">
          <children>
-            <ListView fx:id="messageListView" selectionModel="MULTIPLE" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
+            <ListView fx:id="messageListView" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
             <TextField fx:id="textField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="80.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="80.0" />
             <Button fx:id="submitButton" onAction="#handleSubmitButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="60.0" text="Send" AnchorPane.bottomAnchor="40.0" AnchorPane.rightAnchor="10.0" />
          </children>
