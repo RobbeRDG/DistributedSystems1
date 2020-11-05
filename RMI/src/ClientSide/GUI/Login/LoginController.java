@@ -1,15 +1,12 @@
 package ClientSide.GUI.Login;
 
 import ClientSide.ClientController.ClientController;
-import ClientSide.ClientController.ClientControllerImpl;
-import Objects.ServerLogicException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
-import java.io.Serializable;
 
 public class LoginController {
     private ClientController clientController;
@@ -38,7 +35,7 @@ public class LoginController {
         try {
             clientController.addUser(userName);
             clientController.showChat();
-        } catch (ServerLogicException e) {
+        } catch (IllegalArgumentException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setHeaderText(null);

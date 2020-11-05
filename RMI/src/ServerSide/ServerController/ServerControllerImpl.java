@@ -4,7 +4,6 @@ import ClientSide.ClientConnection.Listener.ClientListener;
 import Objects.Chat;
 import Objects.ChatMessage;
 import Objects.ChatUser;
-import Objects.ServerLogicException;
 import ServerSide.ServerConnection.ServerConnectionImpl;
 
 import java.rmi.RemoteException;
@@ -55,7 +54,7 @@ public class ServerControllerImpl implements ServerController{
     //      USER HANDLING TO SERVER
     //###############################################################################################################
     @Override
-    public synchronized void addUser(String userName, ClientListener clientListener) throws ServerLogicException {
+    public synchronized void addUser(String userName, ClientListener clientListener) throws Exception {
         try {
             //Check if the userName already exists in the users hashmap
             if (users.containsKey(userName)) {
@@ -75,19 +74,17 @@ public class ServerControllerImpl implements ServerController{
             }
 
         } catch (Exception e) {
-            String exceptionMessage = userName + " couldn't be created: Something went wrong (" + e.getMessage() + ")";
-            System.out.println(exceptionMessage);
-            throw new ServerLogicException(exceptionMessage);
+            System.out.println(e.getMessage());
+            throw e;
         }
     }
 
     @Override
-    public synchronized void removeUser(String userName) throws ServerLogicException {
+    public synchronized void removeUser(String userName) throws Exception {
         try {
             //Check if the user exists
             if (users.get(userName) == null) {
-                String exceptionMessage = ("User not registered on the server");
-                System.out.println(exceptionMessage);
+                String exceptionMessage = (userName + " couldn't be deleted : User not registered on the server");
                 throw new IllegalArgumentException(exceptionMessage);
             }
 
@@ -107,20 +104,18 @@ public class ServerControllerImpl implements ServerController{
             System.out.println(userName + " has been deleted");
 
         } catch(Exception e) {
-            String exceptionMessage = userName + " couldn't be deleted: Something went wrong (" + e.getMessage() +")";
-            System.out.println(exceptionMessage);
-            throw new ServerLogicException(exceptionMessage);
+            System.out.println(e.getMessage());
+            throw e;
         }
     }
 
     @Override
-    public ArrayList<String> getOnlineUsers() throws ServerLogicException {
+    public ArrayList<String> getOnlineUsers() throws Exception {
         try {
             return new ArrayList<>(users.keySet());
         } catch (Exception e) {
-            String exceptionMessage = "Couldn't get online users (" + e.getMessage() + ")";
-            System.out.println(exceptionMessage);
-            throw new ServerLogicException(exceptionMessage);
+            System.out.println(e.getMessage());
+            throw e;
         }
     }
 
@@ -128,11 +123,11 @@ public class ServerControllerImpl implements ServerController{
     //###############################################################################################################
     //      MESSAGE HANDLING TO SERVER
     //###############################################################################################################
-    public synchronized void sendMessage(ChatMessage message, UUID chatId) throws ServerLogicException {
+    public synchronized void sendMessage(ChatMessage message, UUID chatId) throws Exception {
         try {
             //find if the user and chat exist
-            if(!users.containsKey(message.getSender())) throw new IllegalArgumentException("User (" + message.getSender() + ") is not registerd on the server");
-            if(!chats.containsKey(chatId)) throw new IllegalArgumentException("Chat (" + chatId.toString() + ") can't be located on the server");
+            if(!users.containsKey(message.getSender())) throw new IllegalArgumentException("Couldn't send message : User (" + message.getSender() + ") is not registerd on the server");
+            if(!chats.containsKey(chatId)) throw new IllegalArgumentException("Couldn't send message : Chat (" + chatId.toString() + ") can't be located on the server");
 
             //find the corresponding chat
             Chat chat = chats.get(chatId);
@@ -145,17 +140,16 @@ public class ServerControllerImpl implements ServerController{
 
             System.out.println("New message handled ( " + message.toString() +" )");
         } catch (Exception e) {
-            String exceptionMessage = "Couldn't send message (" + e.getMessage() + ")";
-            System.out.println(exceptionMessage);
-            throw new ServerLogicException(exceptionMessage);
+            System.out.println(e.getMessage());
+            throw e;
         }
     }
 
     @Override
-    public synchronized void createChat(String userName, String chatName, ArrayList<String> subscribers) throws ServerLogicException {
+    public synchronized void createChat(String userName, String chatName, ArrayList<String> subscribers) throws Exception {
         try {
             //find if the user exist
-            if(!users.containsKey(userName)) throw new Exception("User does not exist");
+            if(!users.containsKey(userName)) throw new Exception("Couldn't create new chat : User does not exist");
 
             //generate a new chatId
             UUID chatId = UUID.randomUUID();
@@ -177,9 +171,8 @@ public class ServerControllerImpl implements ServerController{
 
             System.out.println("New chat created: " + chatName);
         } catch (Exception e) {
-            String exceptionMessage = "Couldn't create new chat (" + e.getMessage() + ")";
-            System.out.println(exceptionMessage);
-            throw new ServerLogicException(exceptionMessage);
+            System.out.println(e.getMessage());
+            throw e;
         }
     }
 
@@ -199,8 +192,7 @@ public class ServerControllerImpl implements ServerController{
                 users.get(userName).getClientListener().chatUpdate(chat);
             }
         } catch (Exception e) {
-            String exceptionMessage = "Couldn't create new chat (" + e.getMessage() + ")";
-            System.out.println(exceptionMessage);
+            System.out.println(e.getMessage());
         }
     }
 

@@ -2,7 +2,6 @@ package ServerSide.ServerConnection;
 
 import ClientSide.ClientConnection.Listener.ClientListener;
 import Objects.ChatMessage;
-import Objects.ServerLogicException;
 import ServerSide.ServerController.ServerController;
 
 import java.rmi.RemoteException;
@@ -37,12 +36,12 @@ public class ServerConnectionImpl extends UnicastRemoteObject implements ServerC
 
 
     @Override
-    public void sendMessage(ChatMessage message, UUID chatId) throws ServerLogicException {
+    public void sendMessage(ChatMessage message, UUID chatId) throws Exception {
         controller.sendMessage(message, chatId);
     }
 
     @Override
-    public void createChat(String userName, String chatName, ArrayList<String> subscribers) throws ServerLogicException {
+    public void createChat(String userName, String chatName, ArrayList<String> subscribers) throws Exception {
         controller.createChat(userName, chatName, subscribers);
     }
 
@@ -51,17 +50,17 @@ public class ServerConnectionImpl extends UnicastRemoteObject implements ServerC
     //###############################################################################################################
 
     @Override
-    public void addUser(String userName, ClientListener clientListener) throws ServerLogicException {
+    public void addUser(String userName, ClientListener clientListener) throws Exception {
         controller.addUser(userName, clientListener);
     }
 
     @Override
-    public void removeUser(String userName) throws ServerLogicException {
+    public void removeUser(String userName) throws Exception {
         controller.removeUser(userName);
     }
 
     @Override
-    public ArrayList<String> getOnlineUsers() throws ServerLogicException {
+    public ArrayList<String> getOnlineUsers() throws Exception {
         return controller.getOnlineUsers();
     }
 

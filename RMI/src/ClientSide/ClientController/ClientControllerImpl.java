@@ -5,7 +5,6 @@ import ClientSide.GUI.Chat.ChatWindowController;
 import ClientSide.GUI.Login.LoginController;
 import Objects.Chat;
 import Objects.ChatMessage;
-import Objects.ServerLogicException;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -15,9 +14,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.rmi.RemoteException;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
 public class ClientControllerImpl extends Application implements ClientController {
@@ -57,7 +54,7 @@ public class ClientControllerImpl extends Application implements ClientControlle
             connection.setClientController(this);
 
             //connect to the chatRoom server
-            connectToServer();
+            connection.connectToServer();
 
             //load the chat and login controller
             loadControllers();
@@ -68,13 +65,6 @@ public class ClientControllerImpl extends Application implements ClientControlle
             handleException(e);
         }
 
-    }
-    private void connectToServer() {
-        try {
-            connection.connectToServer();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
     private void loadControllers() {
@@ -131,15 +121,14 @@ public class ClientControllerImpl extends Application implements ClientControlle
 
 
     @Override
-    public void addUser(String userName) throws ServerLogicException, Exception {
+    public void addUser(String userName) throws IllegalArgumentException {
         try {
             this.userName = userName;
             connection.addUser(userName);
-        } catch (ServerLogicException e) {
+        } catch (IllegalArgumentException e) {
             throw e;
         } catch (Exception e) {
             handleException(e);
-            throw e;
         }
     }
 
@@ -182,9 +171,14 @@ public class ClientControllerImpl extends Application implements ClientControlle
 
     @Override
     public void sendMessage(String messageText, String tabId) {
-        //Create the new message
-        ChatMessage message = new ChatMessage(userName, messageText);
-        connection.sendMessage(message, tabId);
+        try {
+            //Create the new message
+            ChatMessage message = new ChatMessage(userName, messageText);
+            connection.sendMessage(message, tabId);
+        } catch (Exception e) {
+            handleException(e);
+        }
+
     }
 
     @Override
@@ -192,9 +186,10 @@ public class ClientControllerImpl extends Application implements ClientControlle
         //if a user has been created, tell the server to delete that user
         try {
             connection.removeUser(userName);
-            System.exit(0);
         } catch (Exception e) {
-            e.printStackTrace();
+            handleException(e);
+        } finally {
+            System.exit(0);
         }
     }
 
@@ -215,10 +210,16 @@ public class ClientControllerImpl extends Application implements ClientControlle
 
     @Override
     public void createChat(String chatName, ArrayList<String> chatUsers) {
-        connection.createChat(userName, chatName, chatUsers);
+        try {
+            connection.createChat(userName, chatName, chatUsers);
+        } catch (Exception e) {
+            handleException(e);
+        }
     }
 
     private void handleException(Exception e) {
+        //Print the exception in the console
+        System.out.println(e.toString());
         //generate an error alert
         Alert alert = new Alert(Alert.AlertType.ERROR);
 

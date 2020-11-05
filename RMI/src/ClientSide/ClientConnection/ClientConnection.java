@@ -5,7 +5,6 @@ import ClientSide.ClientConnection.Listener.ClientListenerImpl;
 import ClientSide.ClientController.ClientController;
 import Objects.Chat;
 import Objects.ChatMessage;
-import Objects.ServerLogicException;
 import ServerSide.ServerConnection.ServerConnection;
 
 import java.rmi.RemoteException;
@@ -29,19 +28,15 @@ public class ClientConnection {
         }
     }
 
-    public void connectToServer() {
-        try {
-            // Fire to localhost port 2222
-            Registry myRegistry = LocateRegistry.getRegistry("localhost", 2222);
+    public void connectToServer() throws Exception{
+        // Fire to localhost port 2222
+        Registry myRegistry = LocateRegistry.getRegistry("localhost", 2222);
 
-            // Initialize the chatroom
-            serverConnection = (ServerConnection) myRegistry.lookup("ChatService");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        // Initialize the chatroom
+        serverConnection = (ServerConnection) myRegistry.lookup("ChatService");
     }
 
-    public void addUser(String userName) throws ServerLogicException, RemoteException {
+    public void addUser(String userName) throws Exception {
         serverConnection.addUser(userName, clientListener);
     }
 
@@ -54,37 +49,20 @@ public class ClientConnection {
         clientController.chatUpdate(chat);
     }
 
-    public void removeUser(String userName) {
-        try {
-            serverConnection.removeUser(userName);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public void removeUser(String userName) throws Exception {
+        serverConnection.removeUser(userName);
     }
 
-    public void sendMessage(ChatMessage message, String tabId) {
-        try {
-            serverConnection.sendMessage(message, UUID.fromString(tabId));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public void sendMessage(ChatMessage message, String tabId) throws Exception {
+        serverConnection.sendMessage(message, UUID.fromString(tabId));
     }
 
-    public ArrayList<String> getOnlineUsers() {
-        try {
-            return serverConnection.getOnlineUsers();
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
+    public ArrayList<String> getOnlineUsers() throws Exception {
+        return serverConnection.getOnlineUsers();
     }
 
-    public void createChat(String userName, String chatName, ArrayList<String> chatUsers) {
-        try {
-            serverConnection.createChat(userName, chatName, chatUsers);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public void createChat(String userName, String chatName, ArrayList<String> chatUsers) throws Exception {
+        serverConnection.createChat(userName, chatName, chatUsers);
     }
 }
 
