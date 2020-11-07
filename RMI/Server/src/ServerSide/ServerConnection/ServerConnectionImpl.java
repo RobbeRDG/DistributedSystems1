@@ -14,11 +14,13 @@ import java.util.*;
 public class ServerConnectionImpl extends UnicastRemoteObject implements ServerConnection {
     private static final long serialVersionUID = 1L;
     private ServerController controller;
+    private HashMap<String, ClientListener> clientListeners;
 
 
     public ServerConnectionImpl(ServerController controller) throws RemoteException {
         super();
         this.controller = controller;
+        clientListeners = new HashMap<>();
     }
 
     public void startServerConnection() {
@@ -63,6 +65,14 @@ public class ServerConnectionImpl extends UnicastRemoteObject implements ServerC
     @Override
     public ArrayList<String> getOnlineUsers() throws Exception {
         return controller.getOnlineUsers();
+    }
+
+    public void chatUpdate( String userName, Chat chat ) throws RemoteException {
+        clientListeners.get(userName).chatUpdate(chat);
+    }
+
+    public void addClientListener(String userName, ClientListener clientListener) {
+        clientListeners.put(userName, clientListener);
     }
 
 

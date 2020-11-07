@@ -60,10 +60,12 @@ public class ServerControllerImpl implements ServerController{
                 throw new IllegalArgumentException(userName + " couldn't be created: User already exists");
             } else {
                 //if the user doesnt exist, create a new user and subscribe him to the broadcast chat
-                ChatUser user = new ChatUser(userName, clientListener);
+                ChatUser user = new ChatUser(userName);
 
                 users.put(userName, user);
                 chats.get(broadcastChatId).addSubscriber(userName);
+
+                serverConnection.addClientListener(userName, clientListener);
 
                 //message all the subscribers with the new update to the broadcast chat
                 chatUpdate(broadcastChatId);
@@ -186,8 +188,12 @@ public class ServerControllerImpl implements ServerController{
 
             //for each subscriber of that chat, send the new updated chat object to the listener of that user
             for( String userName: chat.getSubscribers()) {
-                //find the corresponding listener
-                users.get(userName).getClientListener().chatUpdate(chat);
+                try {
+                    //find the corresponding listener
+                    serverConnection.chatUpdate(userName, chat);
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());

@@ -11,58 +11,46 @@ import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.*;
 
-public class ServerConnectionImpl extends UnicastRemoteObject implements ServerConnection {
-    private static final long serialVersionUID = 1L;
+public class ServerConnectionImpl{
     private ServerController controller;
 
 
-    public ServerConnectionImpl(ServerController controller) throws RemoteException {
-        super();
+    public ServerConnectionImpl(ServerController controller) throws Exceptions {
         this.controller = controller;
     }
 
-    public void startServerConnection() {
-        try {
-            // Create on port 2222
-            Registry registry = LocateRegistry.createRegistry(2222);
+    public void startServerConnection() throws Exception{
+        //TODO
+        //Create a new server
+        ServerSockets serverSocket = new ServerSocket(3333);
 
-            // Create a new service named ChatService
-            registry.rebind("ChatService", this);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        System.out.println("System is ready");
+
     }
 
 
 
-    @Override
     public void sendMessage(ChatMessage message, UUID chatId) throws Exception {
-        controller.sendMessage(message, chatId);
+        //TODO
     }
 
-    @Override
     public void createChat(String userName, String chatName, ArrayList<String> subscribers) throws Exception {
-        controller.createChat(userName, chatName, subscribers);
+        //TODO
     }
 
     //###############################################################################################################
     //      AUTHENTICATION
     //###############################################################################################################
 
-    @Override
     public void addUser(String userName, ClientListener clientListener) throws Exception {
-        controller.addUser(userName, clientListener);
+        //TODO
     }
 
-    @Override
     public void removeUser(String userName) throws Exception {
-        controller.removeUser(userName);
+        //TODO
     }
 
-    @Override
     public ArrayList<String> getOnlineUsers() throws Exception {
-        return controller.getOnlineUsers();
+        //TODO
     }
 
 
