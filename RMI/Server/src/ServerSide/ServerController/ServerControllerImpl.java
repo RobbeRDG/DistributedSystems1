@@ -18,7 +18,7 @@ public class ServerControllerImpl implements ServerController{
     private static final UUID broadcastChatId = UUID.randomUUID();
 
     //###############################################################################################################
-    //      STARTUP
+    //      LOGIC
     //###############################################################################################################
 
     public ServerControllerImpl() throws RemoteException {
@@ -49,8 +49,9 @@ public class ServerControllerImpl implements ServerController{
 
 
     //###############################################################################################################
-    //      USER HANDLING TO SERVER
+    //      USER
     //###############################################################################################################
+
     @Override
     public synchronized void addUser(String userName) throws Exception {
         try {
@@ -120,8 +121,9 @@ public class ServerControllerImpl implements ServerController{
 
 
     //###############################################################################################################
-    //      MESSAGE HANDLING TO SERVER
+    //      CHAT
     //###############################################################################################################
+
     public synchronized void sendMessage(ChatMessage message, UUID chatId) throws Exception {
         try {
             //find if the user and chat exist
@@ -175,11 +177,6 @@ public class ServerControllerImpl implements ServerController{
         }
     }
 
-
-
-    //###############################################################################################################
-    //      MESSAGE HANDLING TO CLIENT
-    //###############################################################################################################
     private synchronized void chatUpdate(UUID chatId) {
         try {
             //Get the chat

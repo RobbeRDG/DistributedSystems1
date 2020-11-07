@@ -31,7 +31,7 @@ public class ClientControllerImpl extends Application implements ClientControlle
 
 
     //###############################################################################################################
-    //      STARTUP
+    //      LOGIC
     //###############################################################################################################
     public static void main(String[] args) {
         // starts the FX toolkit, instantiates this class,
@@ -116,8 +116,37 @@ public class ClientControllerImpl extends Application implements ClientControlle
         primaryStage.show();
     }
 
+    @Override
+    public void stop(){
+        //if a user has been created, tell the server to delete that user
+        try {
+            connection.removeUser(userName);
+        } catch (Exception e) {
+            handleException(e);
+        } finally {
+            System.exit(0);
+        }
+    }
+
+    private void handleException(Exception e) {
+        //Print the exception in the console
+        e.printStackTrace();
+
+        //generate an error alert
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+
+        alert.setTitle("Error Dialog");
+        alert.setHeaderText("Something went wrong");
+        alert.setContentText(e.getLocalizedMessage());
+
+        alert.showAndWait();
+    }
 
 
+
+    //###############################################################################################################
+    //      USER
+    //###############################################################################################################
 
 
     @Override
@@ -131,6 +160,31 @@ public class ClientControllerImpl extends Application implements ClientControlle
             handleException(e);
         }
     }
+
+    @Override
+    public String getUser() {
+        return userName;
+    }
+
+    @Override
+    public ArrayList<String> getOnlineUsers() {
+        try {
+            ArrayList<String> onlineUsers = connection.getOnlineUsers();
+
+            //Remove this user
+            onlineUsers.remove(userName);
+
+            return onlineUsers;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+
+    //###############################################################################################################
+    //      CHAT
+    //###############################################################################################################
 
     @Override
     public void chatUpdate(Chat chat) {
@@ -165,11 +219,6 @@ public class ClientControllerImpl extends Application implements ClientControlle
     }
 
     @Override
-    public String getUser() {
-        return userName;
-    }
-
-    @Override
     public void sendMessage(String messageText, String tabId) {
         try {
             //Create the new message
@@ -181,32 +230,6 @@ public class ClientControllerImpl extends Application implements ClientControlle
 
     }
 
-    @Override
-    public void stop(){
-        //if a user has been created, tell the server to delete that user
-        try {
-            connection.removeUser(userName);
-        } catch (Exception e) {
-            handleException(e);
-        } finally {
-            System.exit(0);
-        }
-    }
-
-    @Override
-    public ArrayList<String> getOnlineUsers() {
-        try {
-            ArrayList<String> onlineUsers = connection.getOnlineUsers();
-
-            //Remove this user
-            onlineUsers.remove(userName);
-
-            return onlineUsers;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
 
     @Override
     public void createChat(String chatName, ArrayList<String> chatUsers) {
@@ -217,17 +240,5 @@ public class ClientControllerImpl extends Application implements ClientControlle
         }
     }
 
-    private void handleException(Exception e) {
-        //Print the exception in the console
-        e.printStackTrace();
 
-        //generate an error alert
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-
-        alert.setTitle("Error Dialog");
-        alert.setHeaderText("Something went wrong");
-        alert.setContentText(e.getLocalizedMessage());
-
-        alert.showAndWait();
-    }
 }

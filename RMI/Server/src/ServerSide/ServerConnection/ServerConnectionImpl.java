@@ -16,6 +16,11 @@ public class ServerConnectionImpl extends UnicastRemoteObject implements ServerC
     private ServerController controller;
     private HashMap<String, ClientListener> clientListeners;
 
+    //###############################################################################################################
+    //      LOGIC
+    //###############################################################################################################
+
+
 
     public ServerConnectionImpl(ServerController controller) throws RemoteException {
         super();
@@ -37,19 +42,8 @@ public class ServerConnectionImpl extends UnicastRemoteObject implements ServerC
     }
 
 
-
-    @Override
-    public void sendMessage(ChatMessage message, UUID chatId) throws Exception {
-        controller.sendMessage(message, chatId);
-    }
-
-    @Override
-    public void createChat(String userName, String chatName, ArrayList<String> subscribers) throws Exception {
-        controller.createChat(userName, chatName, subscribers);
-    }
-
     //###############################################################################################################
-    //      AUTHENTICATION
+    //      USERS
     //###############################################################################################################
 
     @Override
@@ -57,6 +51,7 @@ public class ServerConnectionImpl extends UnicastRemoteObject implements ServerC
         try {
             //Add the new listener to the clientListeners
             clientListeners.put(userName, clientListener);
+            //Check if the user doesnt already exist
             controller.addUser(userName);
         } catch (Exception e) {
             //if something went wrong remove the just added listener
@@ -74,13 +69,27 @@ public class ServerConnectionImpl extends UnicastRemoteObject implements ServerC
         return controller.getOnlineUsers();
     }
 
+
+
+    //###############################################################################################################
+    //      CHAT
+    //###############################################################################################################
+
+
+    @Override
+    public void sendMessage(ChatMessage message, UUID chatId) throws Exception {
+        controller.sendMessage(message, chatId);
+    }
+
+    @Override
+    public void createChat(String userName, String chatName, ArrayList<String> subscribers) throws Exception {
+        controller.createChat(userName, chatName, subscribers);
+    }
+
     public void chatUpdate( String userName, Chat chat ) throws RemoteException {
         clientListeners.get(userName).chatUpdate(chat);
     }
 
-    public void addClientListener(String userName, ClientListener clientListener) {
-        clientListeners.put(userName, clientListener);
-    }
 
 
 }

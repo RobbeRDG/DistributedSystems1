@@ -18,11 +18,18 @@ public class ClientConnection {
     private static ClientController clientController;
     private static ClientListener clientListener;
 
+
+    //###############################################################################################################
+    //      LOGIC
+    //###############################################################################################################
+
+
     public ClientConnection() throws RemoteException {
         generateClientListener();
     }
 
     private void generateClientListener() throws RemoteException {
+        //Only generate one clientListener per connection so first check if one already exist
         if (clientListener == null) {
             clientListener = new ClientListenerImpl(this);
         }
@@ -36,29 +43,40 @@ public class ClientConnection {
         serverConnection = (ServerConnection) myRegistry.lookup("ChatService");
     }
 
-    public void addUser(String userName) throws Exception {
-        serverConnection.addUser(userName, clientListener);
-    }
-
-
     public void setClientController(ClientController clientController) {
         this.clientController = clientController;
     }
 
-    public void chatUpdate(Chat chat) {
-        clientController.chatUpdate(chat);
+    //###############################################################################################################
+    //      USERS
+    //###############################################################################################################
+
+
+    public void addUser(String userName) throws Exception {
+        serverConnection.addUser(userName, clientListener);
+    }
+
+    public ArrayList<String> getOnlineUsers() throws Exception {
+        return serverConnection.getOnlineUsers();
     }
 
     public void removeUser(String userName) throws Exception {
         serverConnection.removeUser(userName);
     }
 
-    public void sendMessage(ChatMessage message, String tabId) throws Exception {
-        serverConnection.sendMessage(message, UUID.fromString(tabId));
+    //###############################################################################################################
+    //      CHAT
+    //###############################################################################################################
+
+
+    public void chatUpdate(Chat chat) {
+        clientController.chatUpdate(chat);
     }
 
-    public ArrayList<String> getOnlineUsers() throws Exception {
-        return serverConnection.getOnlineUsers();
+
+
+    public void sendMessage(ChatMessage message, String tabId) throws Exception {
+        serverConnection.sendMessage(message, UUID.fromString(tabId));
     }
 
     public void createChat(String userName, String chatName, ArrayList<String> chatUsers) throws Exception {
