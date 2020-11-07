@@ -52,7 +52,7 @@ public class ServerControllerImpl implements ServerController{
     //      USER HANDLING TO SERVER
     //###############################################################################################################
     @Override
-    public synchronized void addUser(String userName, ClientListener clientListener) throws Exception {
+    public synchronized void addUser(String userName) throws Exception {
         try {
             //Check if the userName already exists in the users hashmap
             if (users.containsKey(userName)) {
@@ -65,7 +65,6 @@ public class ServerControllerImpl implements ServerController{
                 users.put(userName, user);
                 chats.get(broadcastChatId).addSubscriber(userName);
 
-                serverConnection.addClientListener(userName, clientListener);
 
                 //message all the subscribers with the new update to the broadcast chat
                 chatUpdate(broadcastChatId);

@@ -54,7 +54,14 @@ public class ServerConnectionImpl extends UnicastRemoteObject implements ServerC
 
     @Override
     public void addUser(String userName, ClientListener clientListener) throws Exception {
-        controller.addUser(userName, clientListener);
+        try {
+            //Add the new listener to the clientListeners
+            clientListeners.put(userName, clientListener);
+            controller.addUser(userName);
+        } catch (Exception e) {
+            //if something went wrong remove the just added listener
+            clientListeners.remove(userName);
+        }
     }
 
     @Override
