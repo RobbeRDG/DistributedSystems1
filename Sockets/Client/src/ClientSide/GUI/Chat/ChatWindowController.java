@@ -136,30 +136,32 @@ public class ChatWindowController {
 
             //Set the button press events
             dialog.setResultConverter(dialogButton -> {
-                //Get the chatname and selected chat users
-                String chatName = chatNameInput.getText();
-                List<String> chatUsers = userListView.getSelectionModel().getSelectedItems();
-
-
-                //If the chat or chat users are empty, show popup
-                if (chatName.isEmpty() || chatUsers.isEmpty()) {
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Error Dialog");
-                    alert.setHeaderText("Incomplete information");
-                    alert.setContentText("Make sure you have chosen a chat name and selected at least one user for the chat");
-                    alert.showAndWait();
-                }
-
-                //if the submit button is pressed, return the parameters
                 if (dialogButton == submit) {
-                    ArrayList<String> chatParameters = new ArrayList<>();
-                    //Place the chat name on the first index
-                    chatParameters.add(chatName);
+                    //Get the chatname and selected chat users
+                    String chatName = chatNameInput.getText();
+                    List<String> chatUsers = userListView.getSelectionModel().getSelectedItems();
 
-                    //Place the chat users on the following parameters
-                    chatParameters.addAll(chatUsers);
 
-                    return chatParameters;
+                    //If the chat or chat users are empty, show popup
+                    if (chatName.isEmpty() || chatUsers.isEmpty()) {
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("Error Dialog");
+                        alert.setHeaderText("Incomplete information");
+                        alert.setContentText("Make sure you have chosen a chat name and selected at least one user for the chat");
+                        alert.showAndWait();
+                    }
+
+                    //if the submit button is pressed, return the parameters
+                    else {
+                        ArrayList<String> chatParameters = new ArrayList<>();
+                        //Place the chat name on the first index
+                        chatParameters.add(chatName);
+
+                        //Place the chat users on the following parameters
+                        chatParameters.addAll(chatUsers);
+
+                        return chatParameters;
+                    }
                 }
                 return null;
             });

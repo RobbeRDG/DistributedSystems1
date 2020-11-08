@@ -18,7 +18,7 @@ public class ServerControllerImpl implements ServerController{
     private static final UUID broadcastChatId = UUID.randomUUID();
 
     //###############################################################################################################
-    //      STARTUP
+    //      LOGIC
     //###############################################################################################################
 
     public ServerControllerImpl() throws RemoteException {
@@ -49,10 +49,11 @@ public class ServerControllerImpl implements ServerController{
 
 
     //###############################################################################################################
-    //      USER HANDLING TO SERVER
+    //      USER
     //###############################################################################################################
+
     @Override
-    public synchronized void addUser(String userName, ClientListener clientListener) throws Exception {
+    public synchronized void addUser(String userName) throws Exception {
         try {
             //Check if the userName already exists in the users hashmap
             if (users.containsKey(userName)) {
@@ -60,10 +61,11 @@ public class ServerControllerImpl implements ServerController{
                 throw new IllegalArgumentException(userName + " couldn't be created: User already exists");
             } else {
                 //if the user doesnt exist, create a new user and subscribe him to the broadcast chat
-                ChatUser user = new ChatUser(userName, clientListener);
+                ChatUser user = new ChatUser(userName);
 
                 users.put(userName, user);
                 chats.get(broadcastChatId).addSubscriber(userName);
+
 
                 //message all the subscribers with the new update to the broadcast chat
                 chatUpdate(broadcastChatId);
@@ -119,8 +121,9 @@ public class ServerControllerImpl implements ServerController{
 
 
     //###############################################################################################################
-    //      MESSAGE HANDLING TO SERVER
+    //      CHAT
     //###############################################################################################################
+
     public synchronized void sendMessage(ChatMessage message, UUID chatId) throws Exception {
         try {
             //find if the user and chat exist
@@ -174,11 +177,6 @@ public class ServerControllerImpl implements ServerController{
         }
     }
 
-
-
-    //###############################################################################################################
-    //      MESSAGE HANDLING TO CLIENT
-    //###############################################################################################################
     private synchronized void chatUpdate(UUID chatId) {
         try {
             //Get the chat
@@ -186,8 +184,12 @@ public class ServerControllerImpl implements ServerController{
 
             //for each subscriber of that chat, send the new updated chat object to the listener of that user
             for( String userName: chat.getSubscribers()) {
-                //find the corresponding listener
-                users.get(userName).getClientListener().chatUpdate(chat);
+                try {
+                    //find the corresponding listener
+                    serverConnection.chatUpdate(userName, chat);
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
