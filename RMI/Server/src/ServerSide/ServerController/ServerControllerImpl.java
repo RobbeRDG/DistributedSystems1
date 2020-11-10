@@ -124,8 +124,11 @@ public class ServerControllerImpl implements ServerController{
     //      CHAT
     //###############################################################################################################
 
-    public synchronized void sendMessage(ChatMessage message, UUID chatId) throws Exception {
+    public synchronized void sendMessage(String messageText, String messageSender, UUID chatId) throws Exception {
         try {
+            //Create a message
+            ChatMessage message = new ChatMessage(messageSender, messageText);
+
             //find if the user and chat exist
             if(!users.containsKey(message.getSender())) throw new IllegalArgumentException("Couldn't send message : User (" + message.getSender() + ") is not registerd on the server");
             if(!chats.containsKey(chatId)) throw new IllegalArgumentException("Couldn't send message : Chat (" + chatId.toString() + ") can't be located on the server");
