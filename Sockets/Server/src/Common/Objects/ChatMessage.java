@@ -3,7 +3,7 @@ package Common.Objects;
 import java.io.Serializable;
 import java.rmi.Remote;
 
-public class ChatMessage implements Remote, Serializable {
+public class ChatMessage extends ChatObject implements Remote, Serializable {
     private static final long serialVersionUID = 6L;
 
     private String sender;

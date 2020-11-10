@@ -1,68 +1,29 @@
 package ClientSide.ClientConnection;
 
-import ClientSide.ClientConnection.Listener.ClientListenerImpl;
 import ClientSide.ClientController.ClientController;
-import Common.ClientListener;
 import Common.Objects.Chat;
 import Common.Objects.ChatMessage;
-import Common.ServerConnection;
+import Common.Objects.SocketMessage;
 
-import java.rmi.RemoteException;
-import java.rmi.registry.LocateRegistry;
-import java.rmi.registry.Registry;
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
-import java.util.UUID;
 
-public class ClientConnection {
-    private static ServerConnection serverConnection;
-    private static ClientController clientController;
-    private static ClientListener clientListener;
+public interface ClientConnection {
+    void connectToServer() throws Exception;
 
-    public ClientConnection() throws RemoteException {
-        generateClientListener();
-    }
+    void addUser(String userName) throws Exception;
 
-    private void generateClientListener() throws RemoteException {
-        if (clientListener == null) {
-            clientListener = new ClientListenerImpl(this);
-        }
-    }
+    void setClientController(ClientController clientController) throws Exception;
 
-    public void connectToServer() throws Exception{
-        // Fire to localhost port 2222
-        Registry myRegistry = LocateRegistry.getRegistry("localhost", 2222);
+    void chatUpdate(Chat chat);
 
-        // Initialize the chatroom
-        serverConnection = (ServerConnection) myRegistry.lookup("ChatService");
-    }
+    void removeUser(String userName) throws Exception;
 
-    public void addUser(String userName) throws Exception {
-        serverConnection.addUser(userName, clientListener);
-    }
+    void sendMessage(ChatMessage message, String tabId) throws Exception;
 
+    ArrayList<String> getOnlineUsers() throws Exception;
 
-    public void setClientController(ClientController clientController) {
-        this.clientController = clientController;
-    }
+    void createChat(String userName, String chatName, ArrayList<String> chatUsers) throws Exception;
 
-    public void chatUpdate(Chat chat) {
-        clientController.chatUpdate(chat);
-    }
-
-    public void removeUser(String userName) throws Exception {
-        serverConnection.removeUser(userName);
-    }
-
-    public void sendMessage(ChatMessage message, String tabId) throws Exception {
-        serverConnection.sendMessage(message, UUID.fromString(tabId));
-    }
-
-    public ArrayList<String> getOnlineUsers() throws Exception {
-        return serverConnection.getOnlineUsers();
-    }
-
-    public void createChat(String userName, String chatName, ArrayList<String> chatUsers) throws Exception {
-        serverConnection.createChat(userName, chatName, chatUsers);
-    }
+    void updateResponse(SocketMessage message);
 }
-

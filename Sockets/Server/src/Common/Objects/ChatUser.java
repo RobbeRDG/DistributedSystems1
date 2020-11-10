@@ -1,21 +1,14 @@
 package Common.Objects;
 
-import Common.ClientListener;
 
-public class ChatUser {
-    private String name;private ClientListener clientListener;
+public class ChatUser extends ChatObject {
+    private String name;
 
-    public ChatUser(String name, ClientListener clientListener) {
+    public ChatUser(String name) {
         this.name = name;
-        this.clientListener = clientListener;
     }
 
     public String getName() {
         return name;
-    }
-
-
-    public ClientListener getClientListener() {
-        return clientListener;
     }
 }

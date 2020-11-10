@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.UUID;
 
-public class Chat implements Serializable {
+public class Chat extends ChatObject implements Serializable {
     private static final long serialVersionUID = 3L;
 
     private String name;

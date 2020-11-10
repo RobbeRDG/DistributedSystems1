@@ -1,7 +1,7 @@
 package ServerSide.ServerController;
 
-import Common.*;
 import Common.Objects.*;
+import ServerSide.ServerConnection.ServerConnection;
 import ServerSide.ServerConnection.ServerConnectionImpl;
 
 import java.rmi.RemoteException;
@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.UUID;
 
 public class ServerControllerImpl implements ServerController{
-    private ServerConnectionImpl serverConnection;
+    private ServerConnection serverConnection;
     private HashMap<String, ChatUser> users;
     private HashMap<UUID, Chat> chats;
 
@@ -37,11 +37,17 @@ public class ServerControllerImpl implements ServerController{
     }
 
     public static void main(String[] args) throws RemoteException {
-        ServerControllerImpl serverController = new ServerControllerImpl();
-        serverController.start();
+        try {
+            ServerControllerImpl serverController = new ServerControllerImpl();
+            serverController.start();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.exit(1);
+        }
+
     }
 
-    private void start() {
+    private void start() throws Exception {
         //Start the serverConnection
         serverConnection.startServerConnection();
     }

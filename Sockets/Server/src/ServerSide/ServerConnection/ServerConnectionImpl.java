@@ -1,56 +1,136 @@
 package ServerSide.ServerConnection;
 
-import Common.*;
 import Common.Objects.*;
-import Common.ServerConnection;
+import ServerSide.ServerConnection.Threads.ChatThread;
+import ServerSide.ServerConnection.Threads.ServerThread;
 import ServerSide.ServerController.ServerController;
 
-import java.rmi.RemoteException;
-import java.rmi.registry.LocateRegistry;
-import java.rmi.registry.Registry;
-import java.rmi.server.UnicastRemoteObject;
+import java.net.Socket;
 import java.util.*;
 
-public class ServerConnectionImpl{
+public class ServerConnectionImpl implements ServerConnection {
     private ServerController controller;
+    private HashMap<String, ChatThread> clientThreads;
 
+    private static final int port = 3333;
 
-    public ServerConnectionImpl(ServerController controller) throws Exceptions {
+    //###############################################################################################################
+    //      LOGIC
+    //###############################################################################################################
+
+    public ServerConnectionImpl(ServerController controller){
         this.controller = controller;
     }
 
-    public void startServerConnection() throws Exception{
-        //TODO
-        //Create a new server
-        ServerSockets serverSocket = new ServerSocket(3333);
 
-
+    @Override
+    public void startServerConnection() throws Exception {
+        ServerThread serverThread = new ServerThread(port, this);
+        serverThread.start();
     }
 
-
-
-    public void sendMessage(ChatMessage message, UUID chatId) throws Exception {
-        //TODO
-    }
-
-    public void createChat(String userName, String chatName, ArrayList<String> subscribers) throws Exception {
-        //TODO
+    @Override
+    public void createNewChatThread(Socket socket) {
+        try {
+            ChatThread chatThread = new ChatThread(socket,this);
+            chatThread.start();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     //###############################################################################################################
-    //      AUTHENTICATION
+    //      USERS
     //###############################################################################################################
 
-    public void addUser(String userName, ClientListener clientListener) throws Exception {
-        //TODO
+    @Override
+    public void addUser(HashMap<String, Object> payload, ChatThread chatThread) throws Exception {
+        String userName = null;
+
+        try {
+            userName = (String) payload.get(userName);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            throw e;
+        }
+
+        if (userName != null) {
+            try {
+                clientThreads.put(userName, chatThread);
+                controller.addUser(userName);
+            } catch (Exception e) {
+                clientThreads.remove(userName);
+                throw e;
+            }
+        }
+        else throw new Exception("Something went wrong");
     }
 
-    public void removeUser(String userName) throws Exception {
-        //TODO
+    @Override
+    public void removeUser(HashMap<String, Object> payload) throws Exception {
+        String userName = null;
+
+        try {
+            userName = (String) payload.get(userName);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            throw e;
+        }
+
+        if (userName != null) controller.removeUser(userName);
+        else throw new Exception("Something went wrong");
     }
 
+    @Override
     public ArrayList<String> getOnlineUsers() throws Exception {
-        //TODO
+        return controller.getOnlineUsers();
+    }
+
+
+    //###############################################################################################################
+    //      CHAT
+    //###############################################################################################################
+
+    @Override
+    public void sendMessage(HashMap<String, Object> payload) throws Exception {
+        ChatMessage userName = null;
+        UUID chatId = null;
+
+        try {
+            userName = (ChatMessage) payload.get(userName);
+            chatId = (UUID) payload.get(chatId);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            throw e;
+        }
+
+        if (userName != null && chatId != null) controller.sendMessage(userName, chatId);
+        else throw new Exception("Something went wrong");
+    }
+
+    @Override
+    public void createChat(HashMap<String, Object> payload) throws Exception {
+        String userName = null;
+        String chatName = null;
+        ArrayList<String> subscribers = null;
+
+        try {
+            userName = (String) payload.get(userName);
+            chatName = (String) payload.get(chatName);
+            subscribers = (ArrayList<String>) payload.get(subscribers);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            throw e;
+        }
+
+        if (userName != null && chatName !=null && subscribers != null) controller.createChat(userName, chatName, subscribers);
+    }
+
+    @Override
+    public void chatUpdate(String userName, Chat chat) {
+        ChatThread clientThread = clientThreads.get(userName);
+
+        clientThread.chatUpdate(chat);
     }
 
 

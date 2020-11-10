@@ -1,6 +1,7 @@
 package ClientSide.ClientController;
 
 import ClientSide.ClientConnection.ClientConnection;
+import ClientSide.ClientConnection.ClientConnectionImpl;
 import Common.Objects.Chat;
 import Common.Objects.ChatMessage;
 import ClientSide.GUI.Chat.ChatWindowController;
@@ -49,7 +50,7 @@ public class ClientControllerImpl extends Application implements ClientControlle
             subscriptionIds = new ArrayList<>();
 
             //initialize the connection
-            connection = new ClientConnection();
+            connection = new ClientConnectionImpl();
             //Pass the ClientMain to the connection for callbacks
             connection.setClientController(this);
 
