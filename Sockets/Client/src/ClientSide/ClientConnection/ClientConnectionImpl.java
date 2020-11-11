@@ -3,28 +3,29 @@ package ClientSide.ClientConnection;
 import ClientSide.ClientConnection.Threads.InputListenerThread;
 import ClientSide.ClientController.ClientController;
 import Common.Objects.Chat;
-import Common.Objects.ChatMessage;
-import Common.Objects.SocketMessage;
+import Common.SocketMessageEncoder;
 
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
-import java.util.UUID;
 
 public class ClientConnectionImpl implements ClientConnection {
     private static ClientController clientController;
     private static InputListenerThread inputListenerThread;
     private Socket socket;
-    private ObjectInputStream in;
-    private ObjectOutputStream out;
-    private SocketMessage response;
+    private PrintWriter out;
+    private String response;
+    private static final SocketMessageEncoder encoder = new SocketMessageEncoder();
 
     private static final String host = "localhost";
     private static final int port = 3333;
 
+    /////////////////////////////////////////////////////////////////////////////////////////////////////
+    //////          LOGIC
+    /////////////////////////////////////////////////////////////////////////////////////////////////////
 
     public ClientConnectionImpl() {
     }
@@ -46,129 +47,165 @@ public class ClientConnectionImpl implements ClientConnection {
 
     private void createSocket() throws IOException {
         socket = new Socket(host, port);
-        out = new ObjectOutputStream(socket.getOutputStream());
+        out = new PrintWriter(socket.getOutputStream(), true);
     }
+
+    private Exception getException(String response) {
+        String[] responseArray = response.split(";");
+
+        return new Exception(responseArray[1]);
+    }
+
+    private String getType(String response) {
+        String[] responseArray = response.split(";");
+
+        return responseArray[0];
+    }
+
+    @Override
+    public synchronized void updateResponse(String response) {
+        this.response = response;
+        notify();
+    }
+
+    @Override
+    public void chatUpdate(HashMap<String, String> chatHashMap) {
+        Chat chat = encoder.decodeChatUpdate(chatHashMap);
+        clientController.chatUpdate(chat);
+    }
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////
+    //////          TO SERVER
+    /////////////////////////////////////////////////////////////////////////////////////////////////////
 
     @Override
     public synchronized void addUser(String userName) throws Exception {
         //Create a new socket request
-        HashMap<String, Object> payload = new HashMap<>();
-        payload.put("userName", userName);
-        UUID requestId = UUID.randomUUID();
-        SocketMessage socketMessage = new SocketMessage(requestId, "request", "addUser", payload);
+        HashMap<String, String> args = new HashMap();
+        args.put("userName", userName);
+        String socketMessage = encoder.encodeToSocketMessage("addUser", args);
 
         //Send the message to the server
-        out.writeObject(socketMessage);
+        out.println(socketMessage);
 
         //Wait for the server response
         while(response == null) {
             wait();
         }
 
-        if (response.getId() != requestId ) throw new Exception("response Id doesn't correspond with the request Id");
-
-        if (response.isException()) throw (Exception) response.getPayload().get("exception");
+        if (getType(response) == "exception") throw getException(response);
+        response = null;
     }
 
 
 
     @Override
-    public void chatUpdate(Chat chat) {
-        clientController.chatUpdate(chat);
-    }
-
-    @Override
-    public void removeUser(String userName) throws Exception {
+    public synchronized void removeUser(String userName) throws Exception {
         //Create a new socket request
-        HashMap<String, Object> payload = new HashMap<>();
-        payload.put("userName", userName);
-        UUID requestId = UUID.randomUUID();
-        SocketMessage socketMessage = new SocketMessage(requestId, "request", "removeUser", payload);
+        HashMap<String, String> args = new HashMap();
+        args.put("userName", userName);
+        String socketMessage = encoder.encodeToSocketMessage("removeUser", args);
 
         //Send the message to the server
-        out.writeObject(socketMessage);
+        out.println(socketMessage);
 
         //Wait for the server response
         while(response == null) {
             wait();
         }
 
-        if (response.getId() != requestId ) throw new Exception("response Id doesn't correspond with the request Id");
+        if (getType(response) == "exception") throw getException(response);
+        response = null;
 
-        if (response.isException()) throw (Exception) response.getPayload().get("exception");
+        closeSocket();
     }
 
+
     @Override
-    public void sendMessage(ChatMessage message, String chatId) throws Exception {
+    public synchronized void sendMessage(String messageSender, String messageText, String chatId) throws Exception {
         //Create a new socket request
-        HashMap<String, Object> payload = new HashMap<>();
-        payload.put("message", message);
-        payload.put("chatId", chatId);
-        UUID requestId = UUID.randomUUID();
-        SocketMessage socketMessage = new SocketMessage(requestId, "request", "removeUser", payload);
+        HashMap<String, String> args = new HashMap() {{
+            put("messageText", messageText);
+            put("messageSender", messageSender);
+            put("chatId", chatId);
+        }};
+        String socketMessage = encoder.encodeToSocketMessage("sendMessage", args);
 
         //Send the message to the server
-        out.writeObject(socketMessage);
+        out.println(socketMessage);
 
         //Wait for the server response
         while(response == null) {
             wait();
         }
 
-        if (response.getId() != requestId ) throw new Exception("response Id doesn't correspond with the request Id");
-
-        if (response.isException()) throw (Exception) response.getPayload().get("exception");
+        if (getType(response) == "exception") throw getException(response);
+        response = null;
     }
 
+
     @Override
-    public ArrayList<String> getOnlineUsers() throws Exception {
+    public synchronized ArrayList<String> getOnlineUsers() throws Exception {
         //Create a new socket request
-        HashMap<String, Object> payload = new HashMap<>();
-        UUID requestId = UUID.randomUUID();
-        SocketMessage socketMessage = new SocketMessage(requestId, "request", "removeUser", payload);
+        HashMap<String, String> args = new HashMap();
+        String socketMessage = encoder.encodeToSocketMessage("getOnlineUsers", args);
 
         //Send the message to the server
-        out.writeObject(socketMessage);
+        out.println(socketMessage);
 
         //Wait for the server response
         while(response == null) {
             wait();
         }
 
-        if (response.getId() != requestId ) throw new Exception("response Id doesn't correspond with the request Id");
+        if (getType(response) == "exception") throw getException(response);
 
-        if (response.isException()) throw (Exception) response.getPayload().get("exception");
-        else return (ArrayList<String>) response.getPayload().get("onlineUsers");
+        //Get the message Arraylist
+        HashMap<String,String> responseParameters = encoder.getParameterHashMap(response);
+        ArrayList<String> onlineUsersArraylist = new ArrayList<>();
+        onlineUsersArraylist.addAll(Arrays.asList(responseParameters.get("onlineUsers").split("/")));
+
+        response = null;
+
+        return onlineUsersArraylist;
+
     }
 
+
+
     @Override
-    public void createChat(String userName, String chatName, ArrayList<String> chatUsers) throws Exception {
+    public synchronized void createChat(String userName, String chatName, ArrayList<String> chatUsers) throws Exception {
         //Create a new socket request
-        HashMap<String, Object> payload = new HashMap<>();
-        payload.put("userName", userName);
-        payload.put("chatName", chatName);
-        payload.put("chatUsers", chatUsers);
-        UUID requestId = UUID.randomUUID();
-        SocketMessage socketMessage = new SocketMessage(requestId, "request", "removeUser", payload);
+        StringBuilder sb = new StringBuilder();
+        for (int i=0; i<chatUsers.size(); i++) {
+            sb.append(chatUsers.get(i));
+            if (i != (chatUsers.size() - 1)) sb.append("/");
+        }
+        String subscribersString = sb.toString();
+
+        HashMap<String, String> args = new HashMap() {{
+            put("userName", userName);
+            put("chatName", chatName);
+            put("subscribers", subscribersString);
+        }};
+        String socketMessage = encoder.encodeToSocketMessage("createChat", args);
 
         //Send the message to the server
-        out.writeObject(socketMessage);
+        out.println(socketMessage);
 
         //Wait for the server response
         while(response == null) {
             wait();
         }
 
-        if (response.getId() != requestId ) throw new Exception("response Id doesn't correspond with the request Id");
+        response = null;
+    }
 
-        if (response.isException()) throw (Exception) response.getPayload().get("exception");
+    private void closeSocket() {
+        out.println("closeSocket;");
     }
 
 
-    @Override
-    public void updateResponse(SocketMessage message) {
-        response = message;
-        notify();
-    }
+
 }
 

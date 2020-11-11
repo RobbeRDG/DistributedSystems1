@@ -223,8 +223,7 @@ public class ClientControllerImpl extends Application implements ClientControlle
     public void sendMessage(String messageText, String tabId) {
         try {
             //Create the new message
-            ChatMessage message = new ChatMessage(userName, messageText);
-            connection.sendMessage(message, tabId);
+            connection.sendMessage(userName, messageText, tabId);
         } catch (Exception e) {
             handleException(e);
         }

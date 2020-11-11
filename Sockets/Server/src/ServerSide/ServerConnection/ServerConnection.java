@@ -4,7 +4,6 @@ import Common.Objects.Chat;
 import ServerSide.ServerConnection.Threads.ChatThread;
 
 import java.net.Socket;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public interface ServerConnection {
@@ -12,15 +11,15 @@ public interface ServerConnection {
 
     void createNewChatThread(Socket socket);
 
-    void addUser(HashMap<String, Object> payload, ChatThread chatThread) throws Exception;
+    void addUser(HashMap<String, String> requestParam, ChatThread chatThread) throws Exception;
 
-    void removeUser(HashMap<String, Object> payload) throws Exception;
+    void removeUser(HashMap<String, String> requestParam) throws Exception;
 
-    ArrayList<String> getOnlineUsers() throws Exception;
+    String getOnlineUsers(HashMap<String, String> requestParam) throws Exception;
 
-    void sendMessage(HashMap<String, Object> payload) throws Exception;
+    void sendMessage(HashMap<String, String> requestParam) throws Exception;
 
-    void createChat(HashMap<String, Object> payload) throws Exception;
+    void createChat(HashMap<String, String> requestParam) throws Exception;
 
     void chatUpdate(String userName, Chat chat);
 

@@ -1,7 +1,7 @@
 package Common.Objects;
 
 
-public class ChatUser extends ChatObject {
+public class ChatUser {
     private String name;
 
     public ChatUser(String name) {

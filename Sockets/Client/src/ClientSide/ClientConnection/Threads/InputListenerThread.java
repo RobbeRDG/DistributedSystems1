@@ -2,53 +2,52 @@ package ClientSide.ClientConnection.Threads;
 
 import ClientSide.ClientConnection.ClientConnection;
 import Common.Objects.Chat;
-import Common.Objects.SocketMessage;
+import Common.SocketMessageEncoder;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.net.Socket;
+import java.util.HashMap;
 
 public class InputListenerThread extends Thread{
     private ClientConnection connection;
-    private ObjectInputStream in;
+    private BufferedReader in;
+    private static final SocketMessageEncoder encoder = new SocketMessageEncoder();
 
-    public InputListenerThread( Socket socket, ClientConnection connection) throws IOException {
-        in = new ObjectInputStream(socket.getInputStream());;
+    public InputListenerThread(Socket socket, ClientConnection connection) throws IOException {
+        in = new BufferedReader(
+                new InputStreamReader(socket.getInputStream()));
         this.connection = connection;
     }
 
     @Override
     public void run() {
-        while (true) {
-            try {
-                SocketMessage input = (SocketMessage) in.readObject();
-                handleMessage(input);
-
-            } catch (Exception e) {
-                return;
+        try {
+            String message;
+            while ((message = in.readLine()).isEmpty() != true) {
+                handleMessage(message);
             }
-
+        } catch (Exception e) {
+            e.printStackTrace();
+            return;
         }
     }
 
-    private void handleMessage(SocketMessage message) {
-        if (message.getType() == "chatUpdate") sendChatUpdate((Chat) message.getPayload().get("chat"));
-        if (message.getType() == "response") relayResponse(message);
-
-            else {
-                connection.updateResponse(message);
-            }
+    private void handleMessage(String message) {
+        if (encoder.getType(message).equals("chatUpdate")) {
+            relayResponse("ok");
+            sendChatUpdate(encoder.getParameterHashMap(message));
         }
+        else relayResponse(message);
+    }
 
-    private void relayResponse(SocketMessage message) {
+    private void relayResponse(String message) {
         connection.updateResponse(message);
     }
 
-
-
-
-
-    private void sendChatUpdate(Chat chat) {
-        connection.chatUpdate(chat);
+    private void sendChatUpdate(HashMap<String,String> chatHashMap) {
+        connection.chatUpdate(chatHashMap);
     }
 }

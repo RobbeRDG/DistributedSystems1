@@ -1,6 +1,7 @@
 package ServerSide.ServerConnection;
 
 import Common.Objects.*;
+import Common.SocketMessageEncoder;
 import ServerSide.ServerConnection.Threads.ChatThread;
 import ServerSide.ServerConnection.Threads.ServerThread;
 import ServerSide.ServerController.ServerController;
@@ -11,6 +12,8 @@ import java.util.*;
 public class ServerConnectionImpl implements ServerConnection {
     private ServerController controller;
     private HashMap<String, ChatThread> clientThreads;
+    private static final SocketMessageEncoder encoder = new SocketMessageEncoder();
+
 
     private static final int port = 3333;
 
@@ -20,6 +23,7 @@ public class ServerConnectionImpl implements ServerConnection {
 
     public ServerConnectionImpl(ServerController controller){
         this.controller = controller;
+        clientThreads = new HashMap<>();
     }
 
 
@@ -44,15 +48,8 @@ public class ServerConnectionImpl implements ServerConnection {
     //###############################################################################################################
 
     @Override
-    public void addUser(HashMap<String, Object> payload, ChatThread chatThread) throws Exception {
-        String userName = null;
-
-        try {
-            userName = (String) payload.get(userName);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            throw e;
-        }
+    public void addUser(HashMap<String, String> requestParam, ChatThread chatThread) throws Exception {
+        String userName = requestParam.get("userName");
 
         if (userName != null) {
             try {
@@ -67,23 +64,25 @@ public class ServerConnectionImpl implements ServerConnection {
     }
 
     @Override
-    public void removeUser(HashMap<String, Object> payload) throws Exception {
-        String userName = null;
-
-        try {
-            userName = (String) payload.get(userName);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            throw e;
-        }
+    public void removeUser(HashMap<String, String> requestParam) throws Exception {
+        String userName = requestParam.get("userName");
 
         if (userName != null) controller.removeUser(userName);
         else throw new Exception("Something went wrong");
     }
 
     @Override
-    public ArrayList<String> getOnlineUsers() throws Exception {
-        return controller.getOnlineUsers();
+    public String getOnlineUsers(HashMap<String, String> requestParam) throws Exception {
+        ArrayList<String> onlineUsersArrayList = controller.getOnlineUsers();
+        StringBuilder sb = new StringBuilder();
+        sb.append("onlineUsers:");
+        for (int i=0; i<onlineUsersArrayList.size(); i++) {
+            sb.append(onlineUsersArrayList.get(i));
+            if (i != (onlineUsersArrayList.size() - 1)) sb.append("/");
+        }
+
+        return sb.toString();
+
     }
 
 
@@ -92,45 +91,31 @@ public class ServerConnectionImpl implements ServerConnection {
     //###############################################################################################################
 
     @Override
-    public void sendMessage(HashMap<String, Object> payload) throws Exception {
-        ChatMessage userName = null;
-        UUID chatId = null;
+    public void sendMessage(HashMap<String, String> requestParam) throws Exception {
+        String messageText = requestParam.get("messageText");
+        String messageSender = requestParam.get("messageSender");
+        UUID chatId = UUID.fromString(requestParam.get("chatId"));
 
-        try {
-            userName = (ChatMessage) payload.get(userName);
-            chatId = (UUID) payload.get(chatId);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            throw e;
-        }
-
-        if (userName != null && chatId != null) controller.sendMessage(userName, chatId);
+        if (messageText != null && messageSender != null && chatId != null) controller.sendMessage(messageSender, messageText, chatId);
         else throw new Exception("Something went wrong");
     }
 
     @Override
-    public void createChat(HashMap<String, Object> payload) throws Exception {
-        String userName = null;
-        String chatName = null;
-        ArrayList<String> subscribers = null;
-
-        try {
-            userName = (String) payload.get(userName);
-            chatName = (String) payload.get(chatName);
-            subscribers = (ArrayList<String>) payload.get(subscribers);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            throw e;
-        }
+    public void createChat(HashMap<String, String> requestParam) throws Exception {
+        String userName = requestParam.get("userName");
+        String chatName = requestParam.get("chatName");
+        ArrayList<String> subscribers = new ArrayList<>(Arrays.asList(requestParam.get("subscribers").split("/")));
 
         if (userName != null && chatName !=null && subscribers != null) controller.createChat(userName, chatName, subscribers);
     }
 
     @Override
     public void chatUpdate(String userName, Chat chat) {
-        ChatThread clientThread = clientThreads.get(userName);
+        ChatThread chatThread = clientThreads.get(userName);
 
-        clientThread.chatUpdate(chat);
+        String chatSocketMessage = chat.toSocketMessage();
+
+        chatThread.chatUpdate("chatUpdate" + ";" + chatSocketMessage);
     }
 
 
