@@ -124,7 +124,7 @@ public class ServerControllerImpl implements ServerController{
     //      CHAT
     //###############################################################################################################
 
-    public synchronized void sendMessage(String messageText, String messageSender, UUID chatId) throws Exception {
+    public synchronized void sendMessage(String messageSender, String messageText, UUID chatId) throws Exception {
         try {
             //Create a message
             ChatMessage message = new ChatMessage(messageSender, messageText);

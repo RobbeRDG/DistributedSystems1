@@ -222,7 +222,7 @@ public class ClientControllerImpl extends Application implements ClientControlle
     public void sendMessage(String messageText, String tabId) {
         try {
             //Create the new message
-            connection.sendMessage(messageText, userName, UUID.fromString(tabId));
+            connection.sendMessage(userName, messageText, UUID.fromString(tabId));
         } catch (Exception e) {
             handleException(e);
         }

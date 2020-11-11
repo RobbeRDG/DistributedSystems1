@@ -77,8 +77,8 @@ public class ServerConnectionImpl extends UnicastRemoteObject implements ServerC
 
 
     @Override
-    public void sendMessage(ChatMessage message, UUID chatId) throws Exception {
-        controller.sendMessage(message, chatId);
+    public void sendMessage(String messageSender, String messageText, UUID chatId) throws Exception {
+        controller.sendMessage(messageSender, messageText, chatId);
     }
 
     @Override

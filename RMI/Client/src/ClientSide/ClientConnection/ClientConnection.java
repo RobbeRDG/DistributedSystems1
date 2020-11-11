@@ -75,8 +75,8 @@ public class ClientConnection {
 
 
 
-    public void sendMessage(String messageText, String messageSender, UUID chatId) throws Exception {
-        serverConnection.sendMessage(messageText, messageSender, chatId);
+    public void sendMessage(String messageSender, String messageText, UUID chatId) throws Exception {
+        serverConnection.sendMessage(messageSender, messageText, chatId);
     }
 
     public void createChat(String userName, String chatName, ArrayList<String> chatUsers) throws Exception {
