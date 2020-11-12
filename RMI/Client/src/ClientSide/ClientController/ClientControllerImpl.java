@@ -152,8 +152,8 @@ public class ClientControllerImpl extends Application implements ClientControlle
     @Override
     public void addUser(String userName) throws IllegalArgumentException {
         try {
-            this.userName = userName;
             connection.addUser(userName);
+            this.userName = userName;
         } catch (IllegalArgumentException e) {
             throw e;
         } catch (Exception e) {
