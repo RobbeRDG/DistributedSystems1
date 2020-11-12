@@ -120,7 +120,7 @@ public class ClientControllerImpl extends Application implements ClientControlle
     public void stop(){
         //if a user has been created, tell the server to delete that user
         try {
-            connection.removeUser(userName);
+            if (userName != null) connection.removeUser(userName);
         } catch (Exception e) {
             handleException(e);
         } finally {
