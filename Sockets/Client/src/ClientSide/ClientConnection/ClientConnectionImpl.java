@@ -90,27 +90,21 @@ public class ClientConnectionImpl implements ClientConnection {
 
     @Override
     public synchronized void removeUser(String userName) throws Exception {
-        try {
-            //Create a new socket request
-            HashMap<String, String> args = new HashMap();
-            args.put("userName", userName);
-            String socketMessage = encoder.encodeToSocketMessage("removeUser", args);
+        //Create a new socket request
+        HashMap<String, String> args = new HashMap();
+        args.put("userName", userName);
+        String socketMessage = encoder.encodeToSocketMessage("removeUser", args);
 
-            //Send the message to the server
-            out.println(socketMessage);
+        //Send the message to the server
+        out.println(socketMessage);
 
-            //Wait for the server response
-            while(response == null) {
-                wait();
-            }
-
-            if (encoder.getType(response).equals("exception")) throw encoder.getException(response);
-            response = null;
-        } catch (Exception e) {
-            throw e;
-        } finally {
-            closeSocket();
+        //Wait for the server response
+        while(response == null) {
+            wait();
         }
+
+        if (encoder.getType(response).equals("exception")) throw encoder.getException(response);
+        response = null;
     }
 
 
@@ -196,7 +190,8 @@ public class ClientConnectionImpl implements ClientConnection {
         response = null;
     }
 
-    private void closeSocket() {
+    @Override
+    public void closeSocket() {
         out.println("closeSocket;");
     }
 

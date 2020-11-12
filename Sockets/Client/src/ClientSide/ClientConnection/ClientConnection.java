@@ -23,4 +23,6 @@ public interface ClientConnection {
     void createChat(String userName, String chatName, ArrayList<String> chatUsers) throws Exception;
 
     void updateResponse(String response);
+
+    void closeSocket();
 }
