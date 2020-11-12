@@ -3,6 +3,8 @@ package Common;
 import Common.Objects.Chat;
 import Common.Objects.ChatMessage;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -125,4 +127,13 @@ public class SocketMessageEncoder {
     }
 
 
+    public Exception getException(String message) throws ClassNotFoundException, NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
+        HashMap<String,String> params = getParameterHashMap(message);
+
+        Class<?> exceptionClass = Class.forName(params.get("exceptionType"));
+        Constructor<?> cons = exceptionClass.getConstructor(String.class);
+        Object exception = cons.newInstance(params.get("exceptionMessage"));
+
+        return (Exception) exception;
+    }
 }

@@ -50,17 +50,6 @@ public class ClientConnectionImpl implements ClientConnection {
         out = new PrintWriter(socket.getOutputStream(), true);
     }
 
-    private Exception getException(String response) {
-        String[] responseArray = response.split(";");
-
-        return new Exception(responseArray[1]);
-    }
-
-    private String getType(String response) {
-        String[] responseArray = response.split(";");
-
-        return responseArray[0];
-    }
 
     @Override
     public synchronized void updateResponse(String response) {
@@ -93,7 +82,7 @@ public class ClientConnectionImpl implements ClientConnection {
             wait();
         }
 
-        if (getType(response) == "exception") throw getException(response);
+        if (encoder.getType(response).equals("exception")) throw encoder.getException(response);
         response = null;
     }
 
@@ -101,23 +90,27 @@ public class ClientConnectionImpl implements ClientConnection {
 
     @Override
     public synchronized void removeUser(String userName) throws Exception {
-        //Create a new socket request
-        HashMap<String, String> args = new HashMap();
-        args.put("userName", userName);
-        String socketMessage = encoder.encodeToSocketMessage("removeUser", args);
+        try {
+            //Create a new socket request
+            HashMap<String, String> args = new HashMap();
+            args.put("userName", userName);
+            String socketMessage = encoder.encodeToSocketMessage("removeUser", args);
 
-        //Send the message to the server
-        out.println(socketMessage);
+            //Send the message to the server
+            out.println(socketMessage);
 
-        //Wait for the server response
-        while(response == null) {
-            wait();
+            //Wait for the server response
+            while(response == null) {
+                wait();
+            }
+
+            if (encoder.getType(response).equals("exception")) throw encoder.getException(response);
+            response = null;
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            closeSocket();
         }
-
-        if (getType(response) == "exception") throw getException(response);
-        response = null;
-
-        closeSocket();
     }
 
 
@@ -139,7 +132,7 @@ public class ClientConnectionImpl implements ClientConnection {
             wait();
         }
 
-        if (getType(response) == "exception") throw getException(response);
+        if (encoder.getType(response).equals("exception")) throw encoder.getException(response);
         response = null;
     }
 
@@ -158,7 +151,7 @@ public class ClientConnectionImpl implements ClientConnection {
             wait();
         }
 
-        if (getType(response) == "exception") throw getException(response);
+        if (encoder.getType(response).equals("exception")) throw encoder.getException(response);
 
         //Get the message Arraylist
         HashMap<String,String> responseParameters = encoder.getParameterHashMap(response);
@@ -197,6 +190,8 @@ public class ClientConnectionImpl implements ClientConnection {
         while(response == null) {
             wait();
         }
+
+        if (encoder.getType(response).equals("exception")) throw encoder.getException(response);
 
         response = null;
     }

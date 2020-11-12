@@ -80,7 +80,7 @@ public class ChatThread extends Thread{
             } catch (Exception e) {
                 System.out.println(e.getMessage());
                 String exceptionMessage = encoder.encodeException(e);
-                out.write(exceptionMessage);
+                out.println(exceptionMessage);
             }
         }
     }
