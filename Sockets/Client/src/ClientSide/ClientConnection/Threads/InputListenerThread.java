@@ -37,7 +37,6 @@ public class InputListenerThread extends Thread{
 
     private void handleMessage(String message) {
         if (encoder.getType(message).equals("chatUpdate")) {
-            relayResponse("ok");
             sendChatUpdate(encoder.getParameterHashMap(message));
         }
         else relayResponse(message);

@@ -78,6 +78,7 @@ public class ClientConnectionImpl implements ClientConnection {
         out.println(socketMessage);
 
         //Wait for the server response
+        response = null;
         while(response == null) {
             wait();
         }
@@ -99,6 +100,7 @@ public class ClientConnectionImpl implements ClientConnection {
         out.println(socketMessage);
 
         //Wait for the server response
+        response = null;
         while(response == null) {
             wait();
         }
@@ -122,6 +124,7 @@ public class ClientConnectionImpl implements ClientConnection {
         out.println(socketMessage);
 
         //Wait for the server response
+        response = null;
         while(response == null) {
             wait();
         }
@@ -141,6 +144,7 @@ public class ClientConnectionImpl implements ClientConnection {
         out.println(socketMessage);
 
         //Wait for the server response
+        response = null;
         while(response == null) {
             wait();
         }
@@ -181,6 +185,7 @@ public class ClientConnectionImpl implements ClientConnection {
         out.println(socketMessage);
 
         //Wait for the server response
+        response = null;
         while(response == null) {
             wait();
         }

@@ -55,6 +55,7 @@ public class ChatThread extends Thread{
                 switch (requestType) {
                     case "addUser":
                         connectionController.addUser(requestParam, this);
+                        out.println("ok;");
                         break;
                     case "removeUser":
                         connectionController.removeUser(requestParam);
@@ -62,9 +63,11 @@ public class ChatThread extends Thread{
                         break;
                     case "sendMessage":
                         connectionController.sendMessage(requestParam);
+                        out.println("ok;");
                         break;
                     case "createChat":
                         connectionController.createChat(requestParam);
+                        out.println("ok;");
                         break;
                     case "getOnlineUsers":
                         String returnMessage = "ok" + ";" + connectionController.getOnlineUsers(requestParam);
