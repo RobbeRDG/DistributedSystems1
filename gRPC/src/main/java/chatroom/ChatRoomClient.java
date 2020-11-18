@@ -82,6 +82,16 @@ public class ChatRoomClient {
                 .setUserName(userName)
                 .build();
 
+        AddUserResponse response = blockingStub.addUser(request);
+
+        connectToChatUpdater(userName);
+    }
+
+    private void connectToChatUpdater(String userName) {
+        ConnectToChatUpdaterRequest request = ConnectToChatUpdaterRequest.newBuilder()
+                .setUserName(userName)
+                .build();
+
         StreamObserver<ChatUpdate> chatUpdateStreamObserver = new StreamObserver<ChatUpdate>() {
             @Override
             public void onNext(ChatUpdate chatUpdate) {
@@ -99,7 +109,7 @@ public class ChatRoomClient {
             }
         };
 
-        asyncStub.addUser(request, chatUpdateStreamObserver);
+        asyncStub.connectToChatUpdater(request, chatUpdateStreamObserver);
     }
 
 

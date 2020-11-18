@@ -9,7 +9,8 @@ package chatroom;
 
 // Interface exported by the server.
 service ChatRoom {
-  rpc addUser(AddUserRequest) returns (stream ChatUpdate) {}
+  rpc addUser(AddUserRequest) returns (AddUserResponse) {}
+  rpc connectToChatUpdater(ConnectToChatUpdaterRequest) returns (stream ChatUpdate) {}
   rpc removeUser(RemoveUserRequest) returns (RemoveUserResponse) {}
   rpc sendMessage(SendMessageRequest) returns (SendMessageResponse) {}
   rpc createChat(CreateChatRequest) returns (CreateChatResponse) {}
@@ -17,6 +18,10 @@ service ChatRoom {
 }
 
 message AddUserRequest {
+  string userName = 1;
+}
+
+message ConnectToChatUpdaterRequest {
   string userName = 1;
 }
 

@@ -98,13 +98,21 @@ public class ChatRoomServer {
 
     private static class ChatRoomService extends ChatRoomGrpc.ChatRoomImplBase {
         @Override
-        public void addUser(AddUserRequest addUserRequest, StreamObserver<ChatUpdate> responseObserver){
-            String userName = addUserRequest.getUserName();
+        public void addUser(AddUserRequest addUserRequest, StreamObserver<AddUserResponse> responseObserver){
             try {
-                chatUserStreams.put(userName, responseObserver);
+                String userName = addUserRequest.getUserName();
                 serverController.addUser(userName);
             } catch (Exception e) {
-                chatUserStreams.remove(userName, responseObserver);
+                responseObserver.onError(e);
+            }
+        }
+
+        @Override
+        public void connectToChatUpdater(ConnectToChatUpdaterRequest connectToChatUpdaterRequest, StreamObserver<ChatUpdate> responseObserver) {
+            try {
+                String userName = connectToChatUpdaterRequest.getUserName();
+                chatUserStreams.put(userName, responseObserver);
+            } catch (Exception e) {
                 responseObserver.onError(e);
             }
         }

@@ -33,39 +33,76 @@ public final class ChatRoomGrpc {
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
   @java.lang.Deprecated // Use {@link #getAddUserMethod()} instead. 
   public static final io.grpc.MethodDescriptor<chatroom.AddUserRequest,
-      chatroom.ChatUpdate> METHOD_ADD_USER = getAddUserMethodHelper();
+      chatroom.AddUserResponse> METHOD_ADD_USER = getAddUserMethodHelper();
 
   private static volatile io.grpc.MethodDescriptor<chatroom.AddUserRequest,
-      chatroom.ChatUpdate> getAddUserMethod;
+      chatroom.AddUserResponse> getAddUserMethod;
 
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
   public static io.grpc.MethodDescriptor<chatroom.AddUserRequest,
-      chatroom.ChatUpdate> getAddUserMethod() {
+      chatroom.AddUserResponse> getAddUserMethod() {
     return getAddUserMethodHelper();
   }
 
   private static io.grpc.MethodDescriptor<chatroom.AddUserRequest,
-      chatroom.ChatUpdate> getAddUserMethodHelper() {
-    io.grpc.MethodDescriptor<chatroom.AddUserRequest, chatroom.ChatUpdate> getAddUserMethod;
+      chatroom.AddUserResponse> getAddUserMethodHelper() {
+    io.grpc.MethodDescriptor<chatroom.AddUserRequest, chatroom.AddUserResponse> getAddUserMethod;
     if ((getAddUserMethod = ChatRoomGrpc.getAddUserMethod) == null) {
       synchronized (ChatRoomGrpc.class) {
         if ((getAddUserMethod = ChatRoomGrpc.getAddUserMethod) == null) {
           ChatRoomGrpc.getAddUserMethod = getAddUserMethod = 
-              io.grpc.MethodDescriptor.<chatroom.AddUserRequest, chatroom.ChatUpdate>newBuilder()
-              .setType(io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
+              io.grpc.MethodDescriptor.<chatroom.AddUserRequest, chatroom.AddUserResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(
                   "chatroom.ChatRoom", "addUser"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   chatroom.AddUserRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  chatroom.ChatUpdate.getDefaultInstance()))
+                  chatroom.AddUserResponse.getDefaultInstance()))
                   .setSchemaDescriptor(new ChatRoomMethodDescriptorSupplier("addUser"))
                   .build();
           }
         }
      }
      return getAddUserMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getConnectToChatUpdaterMethod()} instead. 
+  public static final io.grpc.MethodDescriptor<chatroom.ConnectToChatUpdaterRequest,
+      chatroom.ChatUpdate> METHOD_CONNECT_TO_CHAT_UPDATER = getConnectToChatUpdaterMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<chatroom.ConnectToChatUpdaterRequest,
+      chatroom.ChatUpdate> getConnectToChatUpdaterMethod;
+
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<chatroom.ConnectToChatUpdaterRequest,
+      chatroom.ChatUpdate> getConnectToChatUpdaterMethod() {
+    return getConnectToChatUpdaterMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<chatroom.ConnectToChatUpdaterRequest,
+      chatroom.ChatUpdate> getConnectToChatUpdaterMethodHelper() {
+    io.grpc.MethodDescriptor<chatroom.ConnectToChatUpdaterRequest, chatroom.ChatUpdate> getConnectToChatUpdaterMethod;
+    if ((getConnectToChatUpdaterMethod = ChatRoomGrpc.getConnectToChatUpdaterMethod) == null) {
+      synchronized (ChatRoomGrpc.class) {
+        if ((getConnectToChatUpdaterMethod = ChatRoomGrpc.getConnectToChatUpdaterMethod) == null) {
+          ChatRoomGrpc.getConnectToChatUpdaterMethod = getConnectToChatUpdaterMethod = 
+              io.grpc.MethodDescriptor.<chatroom.ConnectToChatUpdaterRequest, chatroom.ChatUpdate>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
+              .setFullMethodName(generateFullMethodName(
+                  "chatroom.ChatRoom", "connectToChatUpdater"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  chatroom.ConnectToChatUpdaterRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  chatroom.ChatUpdate.getDefaultInstance()))
+                  .setSchemaDescriptor(new ChatRoomMethodDescriptorSupplier("connectToChatUpdater"))
+                  .build();
+          }
+        }
+     }
+     return getConnectToChatUpdaterMethod;
   }
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
   @java.lang.Deprecated // Use {@link #getRemoveUserMethod()} instead. 
@@ -249,8 +286,15 @@ public final class ChatRoomGrpc {
     /**
      */
     public void addUser(chatroom.AddUserRequest request,
-        io.grpc.stub.StreamObserver<chatroom.ChatUpdate> responseObserver) {
+        io.grpc.stub.StreamObserver<chatroom.AddUserResponse> responseObserver) {
       asyncUnimplementedUnaryCall(getAddUserMethodHelper(), responseObserver);
+    }
+
+    /**
+     */
+    public void connectToChatUpdater(chatroom.ConnectToChatUpdaterRequest request,
+        io.grpc.stub.StreamObserver<chatroom.ChatUpdate> responseObserver) {
+      asyncUnimplementedUnaryCall(getConnectToChatUpdaterMethodHelper(), responseObserver);
     }
 
     /**
@@ -285,11 +329,18 @@ public final class ChatRoomGrpc {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
             getAddUserMethodHelper(),
-            asyncServerStreamingCall(
+            asyncUnaryCall(
               new MethodHandlers<
                 chatroom.AddUserRequest,
-                chatroom.ChatUpdate>(
+                chatroom.AddUserResponse>(
                   this, METHODID_ADD_USER)))
+          .addMethod(
+            getConnectToChatUpdaterMethodHelper(),
+            asyncServerStreamingCall(
+              new MethodHandlers<
+                chatroom.ConnectToChatUpdaterRequest,
+                chatroom.ChatUpdate>(
+                  this, METHODID_CONNECT_TO_CHAT_UPDATER)))
           .addMethod(
             getRemoveUserMethodHelper(),
             asyncUnaryCall(
@@ -346,9 +397,17 @@ public final class ChatRoomGrpc {
     /**
      */
     public void addUser(chatroom.AddUserRequest request,
+        io.grpc.stub.StreamObserver<chatroom.AddUserResponse> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(getAddUserMethodHelper(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
+    public void connectToChatUpdater(chatroom.ConnectToChatUpdaterRequest request,
         io.grpc.stub.StreamObserver<chatroom.ChatUpdate> responseObserver) {
       asyncServerStreamingCall(
-          getChannel().newCall(getAddUserMethodHelper(), getCallOptions()), request, responseObserver);
+          getChannel().newCall(getConnectToChatUpdaterMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -407,10 +466,17 @@ public final class ChatRoomGrpc {
 
     /**
      */
-    public java.util.Iterator<chatroom.ChatUpdate> addUser(
-        chatroom.AddUserRequest request) {
-      return blockingServerStreamingCall(
+    public chatroom.AddUserResponse addUser(chatroom.AddUserRequest request) {
+      return blockingUnaryCall(
           getChannel(), getAddUserMethodHelper(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public java.util.Iterator<chatroom.ChatUpdate> connectToChatUpdater(
+        chatroom.ConnectToChatUpdaterRequest request) {
+      return blockingServerStreamingCall(
+          getChannel(), getConnectToChatUpdaterMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -465,6 +531,14 @@ public final class ChatRoomGrpc {
 
     /**
      */
+    public com.google.common.util.concurrent.ListenableFuture<chatroom.AddUserResponse> addUser(
+        chatroom.AddUserRequest request) {
+      return futureUnaryCall(
+          getChannel().newCall(getAddUserMethodHelper(), getCallOptions()), request);
+    }
+
+    /**
+     */
     public com.google.common.util.concurrent.ListenableFuture<chatroom.RemoveUserResponse> removeUser(
         chatroom.RemoveUserRequest request) {
       return futureUnaryCall(
@@ -497,10 +571,11 @@ public final class ChatRoomGrpc {
   }
 
   private static final int METHODID_ADD_USER = 0;
-  private static final int METHODID_REMOVE_USER = 1;
-  private static final int METHODID_SEND_MESSAGE = 2;
-  private static final int METHODID_CREATE_CHAT = 3;
-  private static final int METHODID_GET_ONLINE_USERS = 4;
+  private static final int METHODID_CONNECT_TO_CHAT_UPDATER = 1;
+  private static final int METHODID_REMOVE_USER = 2;
+  private static final int METHODID_SEND_MESSAGE = 3;
+  private static final int METHODID_CREATE_CHAT = 4;
+  private static final int METHODID_GET_ONLINE_USERS = 5;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -521,6 +596,10 @@ public final class ChatRoomGrpc {
       switch (methodId) {
         case METHODID_ADD_USER:
           serviceImpl.addUser((chatroom.AddUserRequest) request,
+              (io.grpc.stub.StreamObserver<chatroom.AddUserResponse>) responseObserver);
+          break;
+        case METHODID_CONNECT_TO_CHAT_UPDATER:
+          serviceImpl.connectToChatUpdater((chatroom.ConnectToChatUpdaterRequest) request,
               (io.grpc.stub.StreamObserver<chatroom.ChatUpdate>) responseObserver);
           break;
         case METHODID_REMOVE_USER:
@@ -601,6 +680,7 @@ public final class ChatRoomGrpc {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
               .setSchemaDescriptor(new ChatRoomFileDescriptorSupplier())
               .addMethod(getAddUserMethodHelper())
+              .addMethod(getConnectToChatUpdaterMethodHelper())
               .addMethod(getRemoveUserMethodHelper())
               .addMethod(getSendMessageMethodHelper())
               .addMethod(getCreateChatMethodHelper())

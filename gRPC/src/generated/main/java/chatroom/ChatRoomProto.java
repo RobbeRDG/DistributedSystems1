@@ -20,6 +20,11 @@ public final class ChatRoomProto {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_chatroom_AddUserRequest_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_chatroom_ConnectToChatUpdaterRequest_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_chatroom_ConnectToChatUpdaterRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
     internal_static_chatroom_RemoveUserRequest_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -79,31 +84,34 @@ public final class ChatRoomProto {
   static {
     java.lang.String[] descriptorData = {
       "\n\017chat_room.proto\022\010chatroom\"\"\n\016AddUserRe" +
-      "quest\022\020\n\010userName\030\001 \001(\t\"%\n\021RemoveUserReq" +
-      "uest\022\020\n\010userName\030\001 \001(\t\"P\n\022SendMessageReq" +
-      "uest\022\025\n\rmessageSender\030\001 \001(\t\022\023\n\013messageTe" +
-      "xt\030\002 \001(\t\022\016\n\006chatId\030\003 \001(\t\"L\n\021CreateChatRe" +
-      "quest\022\020\n\010userName\030\001 \001(\t\022\020\n\010chatName\030\002 \001(" +
-      "\t\022\023\n\013subscribers\030\003 \003(\t\"\027\n\025GetOnlineUsers" +
-      "Request\"U\n\nChatUpdate\022\020\n\010chatName\030\001 \001(\t\022" +
-      "\016\n\006chatId\030\002 \001(\t\022\020\n\010messages\030\003 \003(\t\022\023\n\013sub" +
-      "scribers\030\004 \003(\t\"\"\n\017AddUserResponse\022\017\n\007mes" +
-      "sage\030\001 \001(\t\"%\n\022RemoveUserResponse\022\017\n\007mess" +
-      "age\030\001 \001(\t\"&\n\023SendMessageResponse\022\017\n\007mess" +
-      "age\030\001 \001(\t\"%\n\022CreateChatResponse\022\017\n\007messa" +
-      "ge\030\001 \001(\t\"\'\n\026GetOnlineUsersResponse\022\r\n\005us" +
-      "ers\030\001 \003(\t2\204\003\n\010ChatRoom\022=\n\007addUser\022\030.chat" +
-      "room.AddUserRequest\032\024.chatroom.ChatUpdat" +
-      "e\"\0000\001\022I\n\nremoveUser\022\033.chatroom.RemoveUse" +
-      "rRequest\032\034.chatroom.RemoveUserResponse\"\000" +
-      "\022L\n\013sendMessage\022\034.chatroom.SendMessageRe" +
-      "quest\032\035.chatroom.SendMessageResponse\"\000\022I" +
-      "\n\ncreateChat\022\033.chatroom.CreateChatReques" +
-      "t\032\034.chatroom.CreateChatResponse\"\000\022U\n\016get" +
-      "OnlineUsers\022\037.chatroom.GetOnlineUsersReq" +
-      "uest\032 .chatroom.GetOnlineUsersResponse\"\000" +
-      "B!\n\010chatroomB\rChatRoomProtoP\001\242\002\003CHRb\006pro" +
-      "to3"
+      "quest\022\020\n\010userName\030\001 \001(\t\"/\n\033ConnectToChat" +
+      "UpdaterRequest\022\020\n\010userName\030\001 \001(\t\"%\n\021Remo" +
+      "veUserRequest\022\020\n\010userName\030\001 \001(\t\"P\n\022SendM" +
+      "essageRequest\022\025\n\rmessageSender\030\001 \001(\t\022\023\n\013" +
+      "messageText\030\002 \001(\t\022\016\n\006chatId\030\003 \001(\t\"L\n\021Cre" +
+      "ateChatRequest\022\020\n\010userName\030\001 \001(\t\022\020\n\010chat" +
+      "Name\030\002 \001(\t\022\023\n\013subscribers\030\003 \003(\t\"\027\n\025GetOn" +
+      "lineUsersRequest\"U\n\nChatUpdate\022\020\n\010chatNa" +
+      "me\030\001 \001(\t\022\016\n\006chatId\030\002 \001(\t\022\020\n\010messages\030\003 \003" +
+      "(\t\022\023\n\013subscribers\030\004 \003(\t\"\"\n\017AddUserRespon" +
+      "se\022\017\n\007message\030\001 \001(\t\"%\n\022RemoveUserRespons" +
+      "e\022\017\n\007message\030\001 \001(\t\"&\n\023SendMessageRespons" +
+      "e\022\017\n\007message\030\001 \001(\t\"%\n\022CreateChatResponse" +
+      "\022\017\n\007message\030\001 \001(\t\"\'\n\026GetOnlineUsersRespo" +
+      "nse\022\r\n\005users\030\001 \003(\t2\340\003\n\010ChatRoom\022@\n\007addUs" +
+      "er\022\030.chatroom.AddUserRequest\032\031.chatroom." +
+      "AddUserResponse\"\000\022W\n\024connectToChatUpdate" +
+      "r\022%.chatroom.ConnectToChatUpdaterRequest" +
+      "\032\024.chatroom.ChatUpdate\"\0000\001\022I\n\nremoveUser" +
+      "\022\033.chatroom.RemoveUserRequest\032\034.chatroom" +
+      ".RemoveUserResponse\"\000\022L\n\013sendMessage\022\034.c" +
+      "hatroom.SendMessageRequest\032\035.chatroom.Se" +
+      "ndMessageResponse\"\000\022I\n\ncreateChat\022\033.chat" +
+      "room.CreateChatRequest\032\034.chatroom.Create" +
+      "ChatResponse\"\000\022U\n\016getOnlineUsers\022\037.chatr" +
+      "oom.GetOnlineUsersRequest\032 .chatroom.Get" +
+      "OnlineUsersResponse\"\000B!\n\010chatroomB\rChatR" +
+      "oomProtoP\001\242\002\003CHRb\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -123,62 +131,68 @@ public final class ChatRoomProto {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_chatroom_AddUserRequest_descriptor,
         new java.lang.String[] { "UserName", });
-    internal_static_chatroom_RemoveUserRequest_descriptor =
+    internal_static_chatroom_ConnectToChatUpdaterRequest_descriptor =
       getDescriptor().getMessageTypes().get(1);
+    internal_static_chatroom_ConnectToChatUpdaterRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_chatroom_ConnectToChatUpdaterRequest_descriptor,
+        new java.lang.String[] { "UserName", });
+    internal_static_chatroom_RemoveUserRequest_descriptor =
+      getDescriptor().getMessageTypes().get(2);
     internal_static_chatroom_RemoveUserRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_chatroom_RemoveUserRequest_descriptor,
         new java.lang.String[] { "UserName", });
     internal_static_chatroom_SendMessageRequest_descriptor =
-      getDescriptor().getMessageTypes().get(2);
+      getDescriptor().getMessageTypes().get(3);
     internal_static_chatroom_SendMessageRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_chatroom_SendMessageRequest_descriptor,
         new java.lang.String[] { "MessageSender", "MessageText", "ChatId", });
     internal_static_chatroom_CreateChatRequest_descriptor =
-      getDescriptor().getMessageTypes().get(3);
+      getDescriptor().getMessageTypes().get(4);
     internal_static_chatroom_CreateChatRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_chatroom_CreateChatRequest_descriptor,
         new java.lang.String[] { "UserName", "ChatName", "Subscribers", });
     internal_static_chatroom_GetOnlineUsersRequest_descriptor =
-      getDescriptor().getMessageTypes().get(4);
+      getDescriptor().getMessageTypes().get(5);
     internal_static_chatroom_GetOnlineUsersRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_chatroom_GetOnlineUsersRequest_descriptor,
         new java.lang.String[] { });
     internal_static_chatroom_ChatUpdate_descriptor =
-      getDescriptor().getMessageTypes().get(5);
+      getDescriptor().getMessageTypes().get(6);
     internal_static_chatroom_ChatUpdate_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_chatroom_ChatUpdate_descriptor,
         new java.lang.String[] { "ChatName", "ChatId", "Messages", "Subscribers", });
     internal_static_chatroom_AddUserResponse_descriptor =
-      getDescriptor().getMessageTypes().get(6);
+      getDescriptor().getMessageTypes().get(7);
     internal_static_chatroom_AddUserResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_chatroom_AddUserResponse_descriptor,
         new java.lang.String[] { "Message", });
     internal_static_chatroom_RemoveUserResponse_descriptor =
-      getDescriptor().getMessageTypes().get(7);
+      getDescriptor().getMessageTypes().get(8);
     internal_static_chatroom_RemoveUserResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_chatroom_RemoveUserResponse_descriptor,
         new java.lang.String[] { "Message", });
     internal_static_chatroom_SendMessageResponse_descriptor =
-      getDescriptor().getMessageTypes().get(8);
+      getDescriptor().getMessageTypes().get(9);
     internal_static_chatroom_SendMessageResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_chatroom_SendMessageResponse_descriptor,
         new java.lang.String[] { "Message", });
     internal_static_chatroom_CreateChatResponse_descriptor =
-      getDescriptor().getMessageTypes().get(9);
+      getDescriptor().getMessageTypes().get(10);
     internal_static_chatroom_CreateChatResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_chatroom_CreateChatResponse_descriptor,
         new java.lang.String[] { "Message", });
     internal_static_chatroom_GetOnlineUsersResponse_descriptor =
-      getDescriptor().getMessageTypes().get(10);
+      getDescriptor().getMessageTypes().get(11);
     internal_static_chatroom_GetOnlineUsersResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_chatroom_GetOnlineUsersResponse_descriptor,
