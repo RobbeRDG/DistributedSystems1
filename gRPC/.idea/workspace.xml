@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="BranchesTreeState">
     <expand>
       <path>
@@ -19,42 +22,130 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8d75392c-675e-4073-912c-4e424e41c69f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Client/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Client/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Client/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Client/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Client/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Client/Client.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Client/src/ClientSide/ClientController/ClientController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Client/src/ClientSide/ClientController/ClientControllerImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Client/src/ClientSide/GUI/Chat/ChatTab.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Client/src/ClientSide/GUI/Chat/ChatTabController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Client/src/ClientSide/GUI/Chat/ChatWindow.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Client/src/ClientSide/GUI/Chat/ChatWindowController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Client/src/ClientSide/GUI/Login/Login.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Client/src/ClientSide/GUI/Login/LoginController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Client/src/Common/Objects/Chat.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Client/src/Common/Objects/ChatMessage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Client/src/Common/Objects/ChatUser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Server/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Server/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Server/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Server/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Server/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Server/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Server/Server.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Server/src/Common/Objects/Chat.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Server/src/Common/Objects/ChatMessage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Server/src/Common/Objects/ChatUser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Server/src/ServerSide/ServerController/ServerController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Server/src/ServerSide/ServerController/ServerControllerImpl.java" afterDir="false" />
+    <list default="true" id="1732edfe-d48e-48fa-bace-920c386d85c0" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gradle.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gradlew" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gradlew.bat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/main/grpc/be/msec/labgrpc/CalculatorGrpc.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/main/grpc/chatroom/ChatRoomGrpc.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/main/java/be/msec/labgrpc/Calculation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/main/java/be/msec/labgrpc/CalculationOrBuilder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/main/java/be/msec/labgrpc/CalculatorReply.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/main/java/be/msec/labgrpc/CalculatorReplyOrBuilder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/main/java/be/msec/labgrpc/Empty.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/main/java/be/msec/labgrpc/EmptyOrBuilder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/main/java/be/msec/labgrpc/Sum.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/main/java/be/msec/labgrpc/SumOrBuilder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/main/java/be/msec/labgrpc/TutorialProto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/main/java/chatroom/AddUserRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/main/java/chatroom/AddUserRequestOrBuilder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/main/java/chatroom/AddUserResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/main/java/chatroom/AddUserResponseOrBuilder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/main/java/chatroom/ChatRoomProto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/main/java/chatroom/ChatUpdate.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/main/java/chatroom/ChatUpdateOrBuilder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/main/java/chatroom/CreateChatRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/main/java/chatroom/CreateChatRequestOrBuilder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/main/java/chatroom/CreateChatResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/main/java/chatroom/CreateChatResponseOrBuilder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/main/java/chatroom/GetOnlineUsersRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/main/java/chatroom/GetOnlineUsersRequestOrBuilder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/main/java/chatroom/GetOnlineUsersResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/main/java/chatroom/GetOnlineUsersResponseOrBuilder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/main/java/chatroom/RemoveUserRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/main/java/chatroom/RemoveUserRequestOrBuilder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/main/java/chatroom/RemoveUserResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/main/java/chatroom/RemoveUserResponseOrBuilder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/main/java/chatroom/SendMessageRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/main/java/chatroom/SendMessageRequestOrBuilder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/main/java/chatroom/SendMessageResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/main/java/chatroom/SendMessageResponseOrBuilder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Server/Interceptor/GlobalGrpcExceptionHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/be/msec/labgrpc/TutorialClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/be/msec/labgrpc/TutorialServer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/chatroom/ChatRoomClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/chatroom/ChatRoomServer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/proto/calculator.proto" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/proto/chat_room.proto" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../test/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../test/.idea/gradle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../test/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../test/build.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../test/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../test/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../test/gradlew" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../test/gradlew.bat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../test/settings.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Sockets/Client/src/ClientSide/ClientConnection/ClientConnectionImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Sockets/Client/src/ClientSide/ClientConnection/ClientConnectionImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Sockets/Client/src/Common/SocketMessageEncoder.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Sockets/Client/src/Common/SocketMessageEncoder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../test/.idea/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gRPC.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../test/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/.idea/uiDesigner.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/Client.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/ClientSide/ClientController/ClientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Client/ClientController/ClientController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/ClientSide/ClientController/ClientControllerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Client/ClientController/ClientControllerImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/ClientSide/GUI/Chat/ChatTab.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/ChatTab.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/ClientSide/GUI/Chat/ChatTabController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Client/GUI/Chat/ChatTabController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/ClientSide/GUI/Chat/ChatWindow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/ChatWindow.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/ClientSide/GUI/Chat/ChatWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Client/GUI/Chat/ChatWindowController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/ClientSide/GUI/Login/Login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Login.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/ClientSide/GUI/Login/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Client/GUI/Login/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/Common/Objects/Chat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Common/Objects/Chat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/Common/Objects/ChatMessage.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/Common/Objects/ChatUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Common/Objects/ChatUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../test/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/Server.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/Common/Objects/Chat.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/Common/Objects/ChatMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Common/Objects/ChatMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/Common/Objects/ChatUser.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/ServerSide/ServerController/ServerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Server/ServerController/ServerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/ServerSide/ServerController/ServerControllerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Server/ServerController/ServerControllerImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <projects_view />
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -66,24 +157,144 @@
       </MavenGeneralSettings>
     </option>
   </component>
-  <component name="ProjectId" id="1kNTEw6AjG0CW2EH9YaBhoKb63u" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectId" id="1kSR08GyJ3WhFlyJzcFiZQTWD5b" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="show.unlinked.gradle.project.popup" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\robbe\Documents\School\2020-2021\Gedistribueerde systemen\Gedistribueerde systemen 1\Labo\labgrpc\src\main\resources" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\robbe\Documents\School\2020-2021\Gedistribueerde systemen\Gedistribueerde systemen 1\Labo\labgrpc\src\main\java" />
+      <recent name="C:\Users\robbe\Documents\School\2020-2021\Gedistribueerde systemen\Gedistribueerde systemen 1\Labo\labgrpc\src\main\proto" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Gradle.labgrpc [runChatRoomClient]">
+    <configuration name="TutorialServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="be.msec.labgrpc.TutorialServer" />
+      <module name="labgrpc.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="be.msec.labgrpc.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="labgrpc [runChatRoomClient]" type="GradleRunConfiguration" factoryName="Gradle" singleton="false" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="runChatRoomClient" />
+          </list>
+        </option>
+        <option name="vmOptions" value="" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="labgrpc [runChatRoomServer]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="runChatRoomServer" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="labgrpc [runClient]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="runClient" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="labgrpc [runServer]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="runServer" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Application.TutorialServer" />
+      <item itemvalue="Gradle.labgrpc [runChatRoomClient]" />
+      <item itemvalue="Gradle.labgrpc [runChatRoomServer]" />
+      <item itemvalue="Gradle.labgrpc [runClient]" />
+      <item itemvalue="Gradle.labgrpc [runServer]" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Gradle.labgrpc [runChatRoomClient]" />
+        <item itemvalue="Gradle.labgrpc [runChatRoomServer]" />
+        <item itemvalue="Gradle.labgrpc [runClient]" />
+        <item itemvalue="Gradle.labgrpc [runServer]" />
+        <item itemvalue="Application.TutorialServer" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="8d75392c-675e-4073-912c-4e424e41c69f" name="Default Changelist" comment="" />
-      <created>1605539941245</created>
+      <changelist id="1732edfe-d48e-48fa-bace-920c386d85c0" name="Default Changelist" comment="" />
+      <created>1605691779544</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1605539941245</updated>
+      <updated>1605691779544</updated>
     </task>
     <servers />
   </component>
@@ -97,11 +308,87 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="563" y="282" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1605540150234">
+    <state x="288" y="190" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1605733492511">
       <screen x="0" y="0" width="1664" height="1069" />
     </state>
-    <state x="563" y="282" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1664.1069@0.0.1664.1069" timestamp="1605540150234" />
+    <state x="288" y="190" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1664.1069@0.0.1664.1069" timestamp="1605733492511" />
+    <state x="638" y="242" key="#com.intellij.ide.util.MemberChooser" timestamp="1605731791100">
+      <screen x="0" y="0" width="1664" height="1069" />
+    </state>
+    <state x="638" y="242" key="#com.intellij.ide.util.MemberChooser/0.0.1664.1069@0.0.1664.1069" timestamp="1605731791100" />
+    <state x="298" y="460" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1605704401904">
+      <screen x="0" y="0" width="1664" height="1069" />
+    </state>
+    <state x="298" y="460" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1664.1069@0.0.1664.1069" timestamp="1605704401904" />
+    <state x="563" y="282" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1605704246667">
+      <screen x="0" y="0" width="1664" height="1069" />
+    </state>
+    <state x="563" y="282" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1664.1069@0.0.1664.1069" timestamp="1605704246667" />
+    <state x="613" y="290" key="FileChooserDialogImpl" timestamp="1605703898336">
+      <screen x="0" y="0" width="1664" height="1069" />
+    </state>
+    <state x="613" y="290" key="FileChooserDialogImpl/0.0.1664.1069@0.0.1664.1069" timestamp="1605703898336" />
+    <state width="1621" height="292" key="GridCell.Tab.0.bottom" timestamp="1605733539705">
+      <screen x="0" y="0" width="1664" height="1069" />
+    </state>
+    <state width="1621" height="292" key="GridCell.Tab.0.bottom/0.0.1664.1069@0.0.1664.1069" timestamp="1605733539705" />
+    <state width="1621" height="292" key="GridCell.Tab.0.center" timestamp="1605733539704">
+      <screen x="0" y="0" width="1664" height="1069" />
+    </state>
+    <state width="1621" height="292" key="GridCell.Tab.0.center/0.0.1664.1069@0.0.1664.1069" timestamp="1605733539704" />
+    <state width="1621" height="292" key="GridCell.Tab.0.left" timestamp="1605733539704">
+      <screen x="0" y="0" width="1664" height="1069" />
+    </state>
+    <state width="1621" height="292" key="GridCell.Tab.0.left/0.0.1664.1069@0.0.1664.1069" timestamp="1605733539704" />
+    <state width="1621" height="292" key="GridCell.Tab.0.right" timestamp="1605733539705">
+      <screen x="0" y="0" width="1664" height="1069" />
+    </state>
+    <state width="1621" height="292" key="GridCell.Tab.0.right/0.0.1664.1069@0.0.1664.1069" timestamp="1605733539705" />
+    <state width="1621" height="360" key="GridCell.Tab.1.bottom" timestamp="1605733003421">
+      <screen x="0" y="0" width="1664" height="1069" />
+    </state>
+    <state width="1621" height="360" key="GridCell.Tab.1.bottom/0.0.1664.1069@0.0.1664.1069" timestamp="1605733003421" />
+    <state width="1621" height="360" key="GridCell.Tab.1.center" timestamp="1605733003421">
+      <screen x="0" y="0" width="1664" height="1069" />
+    </state>
+    <state width="1621" height="360" key="GridCell.Tab.1.center/0.0.1664.1069@0.0.1664.1069" timestamp="1605733003421" />
+    <state width="1621" height="360" key="GridCell.Tab.1.left" timestamp="1605733003420">
+      <screen x="0" y="0" width="1664" height="1069" />
+    </state>
+    <state width="1621" height="360" key="GridCell.Tab.1.left/0.0.1664.1069@0.0.1664.1069" timestamp="1605733003420" />
+    <state width="1621" height="360" key="GridCell.Tab.1.right" timestamp="1605733003421">
+      <screen x="0" y="0" width="1664" height="1069" />
+    </state>
+    <state width="1621" height="360" key="GridCell.Tab.1.right/0.0.1664.1069@0.0.1664.1069" timestamp="1605733003421" />
+    <state x="283" y="156" key="new project wizard" timestamp="1605703916410">
+      <screen x="0" y="0" width="1664" height="1069" />
+    </state>
+    <state x="283" y="156" key="new project wizard/0.0.1664.1069@0.0.1664.1069" timestamp="1605703916410" />
+    <state x="495" y="233" width="672" height="678" key="search.everywhere.popup" timestamp="1605721985815">
+      <screen x="0" y="0" width="1664" height="1069" />
+    </state>
+    <state x="495" y="233" width="672" height="678" key="search.everywhere.popup/0.0.1664.1069@0.0.1664.1069" timestamp="1605721985815" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/chatroom/ChatRoomClient.java</url>
+          <line>151</line>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/chatroom/ChatRoomServer.java</url>
+          <line>89</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

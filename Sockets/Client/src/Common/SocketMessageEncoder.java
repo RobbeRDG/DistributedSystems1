@@ -127,13 +127,17 @@ public class SocketMessageEncoder {
     }
 
 
-    public Exception getException(String message) throws ClassNotFoundException, NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
+    public void throwException(String message) throws Exception {
         HashMap<String,String> params = getParameterHashMap(message);
 
-        Class<?> exceptionClass = Class.forName(params.get("exceptionType"));
-        Constructor<?> cons = exceptionClass.getConstructor(String.class);
-        Object exception = cons.newInstance(params.get("exceptionMessage"));
+        String exceptionClass = params.get("exceptionType");
+        String exceptionMessage = params.get("exceptionMessage");
 
-        return (Exception) exception;
+        switch (exceptionClass) {
+            case "java.lang.IllegalArgumentException":
+                throw new IllegalArgumentException(exceptionMessage);
+            default:
+                throw new Exception(exceptionMessage);
+        }
     }
 }

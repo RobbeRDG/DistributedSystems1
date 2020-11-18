@@ -83,7 +83,9 @@ public class ClientConnectionImpl implements ClientConnection {
             wait();
         }
 
-        if (encoder.getType(response).equals("exception")) throw encoder.getException(response);
+        if (encoder.getType(response).equals("exception")) {
+            encoder.throwException(response);
+        }
         response = null;
     }
 
@@ -105,7 +107,9 @@ public class ClientConnectionImpl implements ClientConnection {
             wait();
         }
 
-        if (encoder.getType(response).equals("exception")) throw encoder.getException(response);
+        if (encoder.getType(response).equals("exception")) {
+            encoder.throwException(response);
+        }
         response = null;
     }
 
@@ -129,7 +133,9 @@ public class ClientConnectionImpl implements ClientConnection {
             wait();
         }
 
-        if (encoder.getType(response).equals("exception")) throw encoder.getException(response);
+        if (encoder.getType(response).equals("exception")) {
+            encoder.throwException(response);
+        }
         response = null;
     }
 
@@ -149,7 +155,9 @@ public class ClientConnectionImpl implements ClientConnection {
             wait();
         }
 
-        if (encoder.getType(response).equals("exception")) throw encoder.getException(response);
+        if (encoder.getType(response).equals("exception")) {
+            encoder.throwException(response);
+        }
 
         //Get the message Arraylist
         HashMap<String,String> responseParameters = encoder.getParameterHashMap(response);
@@ -190,7 +198,9 @@ public class ClientConnectionImpl implements ClientConnection {
             wait();
         }
 
-        if (encoder.getType(response).equals("exception")) throw encoder.getException(response);
+        if (encoder.getType(response).equals("exception")) {
+            encoder.throwException(response);
+        }
 
         response = null;
     }

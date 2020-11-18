@@ -1,0 +1,67 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "chatroom"; //Specifies where the service will be generated
+option java_outer_classname = "ChatRoomProto";
+option objc_class_prefix = "CHR";
+
+package chatroom;
+
+// Interface exported by the server.
+service ChatRoom {
+  rpc addUser(AddUserRequest) returns (stream ChatUpdate) {}
+  rpc removeUser(RemoveUserRequest) returns (RemoveUserResponse) {}
+  rpc sendMessage(SendMessageRequest) returns (SendMessageResponse) {}
+  rpc createChat(CreateChatRequest) returns (CreateChatResponse) {}
+  rpc getOnlineUsers(GetOnlineUsersRequest) returns (GetOnlineUsersResponse) {}
+}
+
+message AddUserRequest {
+  string userName = 1;
+}
+
+message RemoveUserRequest {
+  string userName = 1;
+}
+
+message SendMessageRequest {
+  string messageSender = 1;
+  string messageText = 2;
+  string chatId = 3;
+}
+
+message CreateChatRequest {
+  string userName = 1;
+  string chatName = 2;
+  repeated string subscribers = 3;
+}
+
+message GetOnlineUsersRequest {
+}
+
+message ChatUpdate {
+  string chatName = 1;
+  string chatId = 2;
+  repeated string messages = 3;
+  repeated string subscribers = 4;
+}
+
+message AddUserResponse {
+  string message = 1;
+}
+
+message RemoveUserResponse {
+  string message = 1;
+}
+
+message SendMessageResponse {
+  string message = 1;
+}
+
+message CreateChatResponse {
+  string message = 1;
+}
+
+message GetOnlineUsersResponse {
+  repeated string users = 1;
+}
