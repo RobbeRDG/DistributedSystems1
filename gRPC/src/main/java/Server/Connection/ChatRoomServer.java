@@ -91,7 +91,7 @@ public class ChatRoomServer {
 
         chatUserStreams.get(chatUsers.get(userName)).onNext(chatUpdate);
     }
-    
+
 
 
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -105,8 +105,10 @@ public class ChatRoomServer {
                 String userName = addUserRequest.getUserName();
                 UUID userId = UUID.fromString(addUserRequest.getClientId());
 
-                chatUsers.put(userName, userId);
-                serverController.addUser(userName);
+                if (chatUsers.containsKey(userName) == false) {
+                    chatUsers.put(userName, userId);
+                    serverController.addUser(userName);
+                } else throw new IllegalArgumentException(userName + " couldn't be created: User already exists");
 
                 responseObserver.onNext(AddUserResponse.newBuilder().setMessage("ok").build());
                 responseObserver.onCompleted();
