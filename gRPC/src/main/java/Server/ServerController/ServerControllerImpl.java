@@ -1,7 +1,9 @@
 package Server.ServerController;
 
-import Common.Objects.*;
-import chatroom.ChatRoomServer;
+import Common.Objects.Chat;
+import Common.Objects.ChatMessage;
+import Common.Objects.ChatUser;
+import Server.Connection.ChatRoomServer;
 
 import java.io.IOException;
 import java.util.ArrayList;

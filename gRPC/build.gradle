@@ -59,16 +59,6 @@ idea {
     }
 }
 
-task runServer(type: JavaExec) {
-    classpath = sourceSets.main.runtimeClasspath
-    main = 'be.msec.labgrpc.TutorialServer'
-}
-
-task runClient(type: JavaExec) {
-    classpath = sourceSets.main.runtimeClasspath
-    main = 'be.msec.labgrpc.TutorialClient'
-}
-
 task runChatRoomServer(type: JavaExec) {
     classpath = sourceSets.main.runtimeClasspath
     main = 'Server.ServerController.ServerControllerImpl'

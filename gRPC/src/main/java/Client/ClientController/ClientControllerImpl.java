@@ -1,9 +1,9 @@
 package Client.ClientController;
 
-import chatroom.ChatRoomClient;
 import Client.GUI.Chat.ChatWindowController;
 import Client.GUI.Login.LoginController;
 import Common.Objects.Chat;
+import Client.Connection.ChatRoomClient;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -47,11 +47,13 @@ public class ClientControllerImpl extends Application implements ClientControlle
             //initialize the subscriptions
             subscriptionIds = new ArrayList<>();
 
-            //initialize and start the connection
+            //initialize the connection
             connection = new ChatRoomClient("localhost", 33333);
             //Pass the ClientMain to the connection for callbacks
             connection.setClientController(this);
 
+            //connect to the chatRoom server
+            connection.connectToServer();
 
             //load the chat and login controller
             loadControllers();

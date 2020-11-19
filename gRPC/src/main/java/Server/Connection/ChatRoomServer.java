@@ -1,10 +1,11 @@
-package chatroom;
+package Server.Connection;
 
 import Common.Objects.Chat;
-import Server.Interceptor.GlobalGrpcExceptionHandler;
 import Server.ServerController.ServerController;
+import chatroom.*;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
+import io.grpc.Status;
 import io.grpc.stub.StreamObserver;
 
 import java.io.IOException;
@@ -25,7 +26,8 @@ public class ChatRoomServer {
     private final int port;
     private final Server server;
     static ServerController serverController;
-    static HashMap<String,StreamObserver<ChatUpdate>> chatUserStreams;
+    static HashMap<String, UUID> chatUsers;
+    static HashMap<UUID,StreamObserver<ChatUpdate>> chatUserStreams;
 
     public ChatRoomServer(int port, ServerController serverController) throws IOException {
         this(ServerBuilder.forPort(port), port, serverController);
@@ -35,10 +37,10 @@ public class ChatRoomServer {
     public ChatRoomServer(ServerBuilder<?> serverBuilder, int port, ServerController serverController) {
         this.port = port;
         server = serverBuilder.addService(new ChatRoomService())
-                .intercept(new GlobalGrpcExceptionHandler())
                 .build();
         this.serverController = serverController;
         chatUserStreams = new HashMap<>();
+        chatUsers = new HashMap<>();
     }
 
     //Start the server
@@ -87,9 +89,9 @@ public class ChatRoomServer {
                 .addAllSubscribers(chat.getSubscribers())
                 .build();
 
-        chatUserStreams.get(userName).onNext(chatUpdate);
+        chatUserStreams.get(chatUsers.get(userName)).onNext(chatUpdate);
     }
-
+    
 
 
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -101,19 +103,42 @@ public class ChatRoomServer {
         public void addUser(AddUserRequest addUserRequest, StreamObserver<AddUserResponse> responseObserver){
             try {
                 String userName = addUserRequest.getUserName();
+                UUID userId = UUID.fromString(addUserRequest.getClientId());
+
+                chatUsers.put(userName, userId);
                 serverController.addUser(userName);
+
+                responseObserver.onNext(AddUserResponse.newBuilder().setMessage("ok").build());
+                responseObserver.onCompleted();
+                
+            } catch (IllegalArgumentException e) {
+                responseObserver.onError(Status.INVALID_ARGUMENT
+                        .withCause(e)
+                        .withDescription(e.getMessage())
+                        .asRuntimeException());
             } catch (Exception e) {
-                responseObserver.onError(e);
+                responseObserver.onError(Status.INTERNAL
+                        .withCause(e)
+                        .withDescription(e.getMessage())
+                        .asRuntimeException());
             }
         }
 
         @Override
         public void connectToChatUpdater(ConnectToChatUpdaterRequest connectToChatUpdaterRequest, StreamObserver<ChatUpdate> responseObserver) {
             try {
-                String userName = connectToChatUpdaterRequest.getUserName();
-                chatUserStreams.put(userName, responseObserver);
+                String clientId = connectToChatUpdaterRequest.getClientId();
+                chatUserStreams.put(UUID.fromString(clientId), responseObserver);
+            } catch (IllegalArgumentException e) {
+                responseObserver.onError(Status.INVALID_ARGUMENT
+                        .withCause(e)
+                        .withDescription(e.getMessage())
+                        .asRuntimeException());
             } catch (Exception e) {
-                responseObserver.onError(e);
+                responseObserver.onError(Status.INTERNAL
+                        .withCause(e)
+                        .withDescription(e.getMessage())
+                        .asRuntimeException());
             }
         }
 
@@ -125,8 +150,16 @@ public class ChatRoomServer {
                 chatUserStreams.remove(userName);
                 responseObserver.onNext(RemoveUserResponse.newBuilder().setMessage("ok").build());
                 responseObserver.onCompleted();
-            } catch (Exception e){
-                responseObserver.onError(e);
+            } catch (IllegalArgumentException e) {
+                responseObserver.onError(Status.INVALID_ARGUMENT
+                        .withCause(e)
+                        .withDescription(e.getMessage())
+                        .asRuntimeException());
+            } catch (Exception e) {
+                responseObserver.onError(Status.INTERNAL
+                        .withCause(e)
+                        .withDescription(e.getMessage())
+                        .asRuntimeException());
             }
         }
 
@@ -141,8 +174,16 @@ public class ChatRoomServer {
 
                 responseObserver.onNext(SendMessageResponse.newBuilder().setMessage("ok").build());
                 responseObserver.onCompleted();
-            } catch (Exception e){
-                responseObserver.onError(e);
+            } catch (IllegalArgumentException e) {
+                responseObserver.onError(Status.INVALID_ARGUMENT
+                        .withCause(e)
+                        .withDescription(e.getMessage())
+                        .asRuntimeException());
+            } catch (Exception e) {
+                responseObserver.onError(Status.INTERNAL
+                        .withCause(e)
+                        .withDescription(e.getMessage())
+                        .asRuntimeException());
             }
         }
 
@@ -157,8 +198,16 @@ public class ChatRoomServer {
 
                 responseObserver.onNext(CreateChatResponse.newBuilder().setMessage("ok").build());
                 responseObserver.onCompleted();
-            } catch (Exception e){
-                responseObserver.onError(e);
+            } catch (IllegalArgumentException e) {
+                responseObserver.onError(Status.INVALID_ARGUMENT
+                        .withCause(e)
+                        .withDescription(e.getMessage())
+                        .asRuntimeException());
+            } catch (Exception e) {
+                responseObserver.onError(Status.INTERNAL
+                        .withCause(e)
+                        .withDescription(e.getMessage())
+                        .asRuntimeException());
             }
         }
 
@@ -169,8 +218,16 @@ public class ChatRoomServer {
 
                 responseObserver.onNext(GetOnlineUsersResponse.newBuilder().addAllUsers(onlineUsers).build());
                 responseObserver.onCompleted();
+            } catch (IllegalArgumentException e) {
+                responseObserver.onError(Status.INVALID_ARGUMENT
+                        .withCause(e)
+                        .withDescription(e.getMessage())
+                        .asRuntimeException());
             } catch (Exception e) {
-                responseObserver.onError(e);
+                responseObserver.onError(Status.INTERNAL
+                        .withCause(e)
+                        .withDescription(e.getMessage())
+                        .asRuntimeException());
             }
 
 

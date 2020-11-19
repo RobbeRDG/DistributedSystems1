@@ -23,14 +23,54 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1732edfe-d48e-48fa-bace-920c386d85c0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/generated/main/java/chatroom/ConnectToChatUpdaterRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/main/java/chatroom/ConnectToChatUpdaterRequestOrBuilder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Client/Connection/ClientChatUpdateThread.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/main/grpc/be/msec/labgrpc/CalculatorGrpc.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/generated/main/grpc/chatroom/ChatRoomGrpc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/main/grpc/chatroom/ChatRoomGrpc.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/main/java/be/msec/labgrpc/Calculation.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/main/java/be/msec/labgrpc/CalculationOrBuilder.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/main/java/be/msec/labgrpc/CalculatorReply.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/main/java/be/msec/labgrpc/CalculatorReplyOrBuilder.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/main/java/be/msec/labgrpc/Empty.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/main/java/be/msec/labgrpc/EmptyOrBuilder.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/main/java/be/msec/labgrpc/Sum.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/main/java/be/msec/labgrpc/SumOrBuilder.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/main/java/be/msec/labgrpc/TutorialProto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/main/java/chatroom/AddUserRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/main/java/chatroom/AddUserRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/main/java/chatroom/AddUserRequestOrBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/main/java/chatroom/AddUserRequestOrBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/main/java/chatroom/AddUserResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/main/java/chatroom/AddUserResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/main/java/chatroom/AddUserResponseOrBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/main/java/chatroom/AddUserResponseOrBuilder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/generated/main/java/chatroom/ChatRoomProto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/main/java/chatroom/ChatRoomProto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/chatroom/ChatRoomClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/chatroom/ChatRoomClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/chatroom/ChatRoomServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/chatroom/ChatRoomServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/proto/chat_room.proto" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/proto/chat_room.proto" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/main/java/chatroom/ChatUpdate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/main/java/chatroom/ChatUpdate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/main/java/chatroom/ChatUpdateOrBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/main/java/chatroom/ChatUpdateOrBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/main/java/chatroom/ConnectToChatUpdaterRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/main/java/chatroom/ConnectToChatUpdaterRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/main/java/chatroom/ConnectToChatUpdaterRequestOrBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/main/java/chatroom/ConnectToChatUpdaterRequestOrBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/main/java/chatroom/CreateChatRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/main/java/chatroom/CreateChatRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/main/java/chatroom/CreateChatRequestOrBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/main/java/chatroom/CreateChatRequestOrBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/main/java/chatroom/CreateChatResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/main/java/chatroom/CreateChatResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/main/java/chatroom/CreateChatResponseOrBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/main/java/chatroom/CreateChatResponseOrBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/main/java/chatroom/GetOnlineUsersRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/main/java/chatroom/GetOnlineUsersRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/main/java/chatroom/GetOnlineUsersRequestOrBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/main/java/chatroom/GetOnlineUsersRequestOrBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/main/java/chatroom/GetOnlineUsersResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/main/java/chatroom/GetOnlineUsersResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/main/java/chatroom/GetOnlineUsersResponseOrBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/main/java/chatroom/GetOnlineUsersResponseOrBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/main/java/chatroom/RemoveUserRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/main/java/chatroom/RemoveUserRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/main/java/chatroom/RemoveUserRequestOrBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/main/java/chatroom/RemoveUserRequestOrBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/main/java/chatroom/RemoveUserResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/main/java/chatroom/RemoveUserResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/main/java/chatroom/RemoveUserResponseOrBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/main/java/chatroom/RemoveUserResponseOrBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/main/java/chatroom/SendMessageRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/main/java/chatroom/SendMessageRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/main/java/chatroom/SendMessageRequestOrBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/main/java/chatroom/SendMessageRequestOrBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/main/java/chatroom/SendMessageResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/main/java/chatroom/SendMessageResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/main/java/chatroom/SendMessageResponseOrBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/main/java/chatroom/SendMessageResponseOrBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Client/ClientController/ClientControllerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Client/ClientController/ClientControllerImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Server/Interceptor/GlobalGrpcExceptionHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Server/ServerController/ServerControllerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Server/ServerController/ServerControllerImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/be/msec/labgrpc/TutorialClient.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/be/msec/labgrpc/TutorialServer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/chatroom/ChatRoomClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Client/Connection/ChatRoomClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/chatroom/ChatRoomServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Server/Connection/ChatRoomServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/proto/calculator.proto" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/proto/chat_room.proto" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/proto/chatroom.proto" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,12 +124,16 @@
     <property name="show.unlinked.gradle.project.popup" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\robbe\Documents\School\2020-2021\Gedistribueerde systemen\Gedistribueerde systemen 1\Labo\labgrpc\src\main\resources" />
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="Server.Connection" />
+      <recent name="Client.Connection" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\robbe\Documents\School\2020-2021\Gedistribueerde systemen\Gedistribueerde systemen 1\Labo\labgrpc\src\main\java" />
       <recent name="C:\Users\robbe\Documents\School\2020-2021\Gedistribueerde systemen\Gedistribueerde systemen 1\Labo\labgrpc\src\main\proto" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\robbe\Documents\School\2020-2021\Gedistribueerde systemen\Gedistribueerde systemen 1\Labo\labgrpc\src\main\resources" />
     </key>
   </component>
   <component name="RunManager" selected="Gradle.labgrpc [runChatRoomServer]">
@@ -191,8 +235,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.labgrpc [runChatRoomServer]" />
         <item itemvalue="Gradle.labgrpc [runChatRoomClient]" />
+        <item itemvalue="Gradle.labgrpc [runChatRoomServer]" />
         <item itemvalue="Gradle.labgrpc [runClient]" />
         <item itemvalue="Gradle.labgrpc [runServer]" />
         <item itemvalue="Application.TutorialServer" />
@@ -238,6 +282,10 @@
       <screen x="0" y="0" width="1664" height="1069" />
     </state>
     <state x="298" y="460" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1664.1069@0.0.1664.1069" timestamp="1605704401904" />
+    <state x="616" y="404" width="450" height="269" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1605781222634">
+      <screen x="0" y="0" width="1664" height="1069" />
+    </state>
+    <state x="616" y="404" width="450" height="269" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1664.1069@0.0.1664.1069" timestamp="1605781222634" />
     <state x="563" y="282" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1605704246667">
       <screen x="0" y="0" width="1664" height="1069" />
     </state>
@@ -246,38 +294,38 @@
       <screen x="0" y="0" width="1664" height="1069" />
     </state>
     <state x="613" y="290" key="FileChooserDialogImpl/0.0.1664.1069@0.0.1664.1069" timestamp="1605703898336" />
-    <state width="1621" height="292" key="GridCell.Tab.0.bottom" timestamp="1605734206161">
+    <state width="1621" height="292" key="GridCell.Tab.0.bottom" timestamp="1605782141831">
       <screen x="0" y="0" width="1664" height="1069" />
     </state>
-    <state width="1621" height="292" key="GridCell.Tab.0.bottom/0.0.1664.1069@0.0.1664.1069" timestamp="1605734206161" />
-    <state width="1621" height="292" key="GridCell.Tab.0.center" timestamp="1605734206160">
+    <state width="1621" height="292" key="GridCell.Tab.0.bottom/0.0.1664.1069@0.0.1664.1069" timestamp="1605782141831" />
+    <state width="1621" height="292" key="GridCell.Tab.0.center" timestamp="1605782141831">
       <screen x="0" y="0" width="1664" height="1069" />
     </state>
-    <state width="1621" height="292" key="GridCell.Tab.0.center/0.0.1664.1069@0.0.1664.1069" timestamp="1605734206160" />
-    <state width="1621" height="292" key="GridCell.Tab.0.left" timestamp="1605734206160">
+    <state width="1621" height="292" key="GridCell.Tab.0.center/0.0.1664.1069@0.0.1664.1069" timestamp="1605782141831" />
+    <state width="1621" height="292" key="GridCell.Tab.0.left" timestamp="1605782141831">
       <screen x="0" y="0" width="1664" height="1069" />
     </state>
-    <state width="1621" height="292" key="GridCell.Tab.0.left/0.0.1664.1069@0.0.1664.1069" timestamp="1605734206160" />
-    <state width="1621" height="292" key="GridCell.Tab.0.right" timestamp="1605734206160">
+    <state width="1621" height="292" key="GridCell.Tab.0.left/0.0.1664.1069@0.0.1664.1069" timestamp="1605782141831" />
+    <state width="1621" height="292" key="GridCell.Tab.0.right" timestamp="1605782141831">
       <screen x="0" y="0" width="1664" height="1069" />
     </state>
-    <state width="1621" height="292" key="GridCell.Tab.0.right/0.0.1664.1069@0.0.1664.1069" timestamp="1605734206160" />
-    <state width="1621" height="360" key="GridCell.Tab.1.bottom" timestamp="1605733003421">
+    <state width="1621" height="292" key="GridCell.Tab.0.right/0.0.1664.1069@0.0.1664.1069" timestamp="1605782141831" />
+    <state width="1621" height="360" key="GridCell.Tab.1.bottom" timestamp="1605781011506">
       <screen x="0" y="0" width="1664" height="1069" />
     </state>
-    <state width="1621" height="360" key="GridCell.Tab.1.bottom/0.0.1664.1069@0.0.1664.1069" timestamp="1605733003421" />
-    <state width="1621" height="360" key="GridCell.Tab.1.center" timestamp="1605733003421">
+    <state width="1621" height="360" key="GridCell.Tab.1.bottom/0.0.1664.1069@0.0.1664.1069" timestamp="1605781011506" />
+    <state width="1621" height="360" key="GridCell.Tab.1.center" timestamp="1605781011505">
       <screen x="0" y="0" width="1664" height="1069" />
     </state>
-    <state width="1621" height="360" key="GridCell.Tab.1.center/0.0.1664.1069@0.0.1664.1069" timestamp="1605733003421" />
-    <state width="1621" height="360" key="GridCell.Tab.1.left" timestamp="1605733003420">
+    <state width="1621" height="360" key="GridCell.Tab.1.center/0.0.1664.1069@0.0.1664.1069" timestamp="1605781011505" />
+    <state width="1621" height="360" key="GridCell.Tab.1.left" timestamp="1605781011505">
       <screen x="0" y="0" width="1664" height="1069" />
     </state>
-    <state width="1621" height="360" key="GridCell.Tab.1.left/0.0.1664.1069@0.0.1664.1069" timestamp="1605733003420" />
-    <state width="1621" height="360" key="GridCell.Tab.1.right" timestamp="1605733003421">
+    <state width="1621" height="360" key="GridCell.Tab.1.left/0.0.1664.1069@0.0.1664.1069" timestamp="1605781011505" />
+    <state width="1621" height="360" key="GridCell.Tab.1.right" timestamp="1605781011505">
       <screen x="0" y="0" width="1664" height="1069" />
     </state>
-    <state width="1621" height="360" key="GridCell.Tab.1.right/0.0.1664.1069@0.0.1664.1069" timestamp="1605733003421" />
+    <state width="1621" height="360" key="GridCell.Tab.1.right/0.0.1664.1069@0.0.1664.1069" timestamp="1605781011505" />
     <state x="283" y="156" key="new project wizard" timestamp="1605703916410">
       <screen x="0" y="0" width="1664" height="1069" />
     </state>
@@ -290,15 +338,13 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/chatroom/ChatRoomClient.java</url>
-          <line>161</line>
-          <option name="timeStamp" value="10" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/chatroom/ChatRoomServer.java</url>
-          <line>89</line>
-          <option name="timeStamp" value="12" />
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/Client/Connection/ClientChatUpdateThread.java</url>
+          <line>62</line>
+          <properties method="onError">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="16" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

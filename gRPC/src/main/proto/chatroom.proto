@@ -19,10 +19,11 @@ service ChatRoom {
 
 message AddUserRequest {
   string userName = 1;
+  string clientId = 2;
 }
 
 message ConnectToChatUpdaterRequest {
-  string userName = 1;
+  string clientId = 1;
 }
 
 message RemoveUserRequest {

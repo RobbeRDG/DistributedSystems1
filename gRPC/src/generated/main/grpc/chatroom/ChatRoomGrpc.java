@@ -22,7 +22,7 @@ import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
  */
 @javax.annotation.Generated(
     value = "by gRPC proto compiler (version 1.12.0)",
-    comments = "Source: chat_room.proto")
+    comments = "Source: chatroom.proto")
 public final class ChatRoomGrpc {
 
   private ChatRoomGrpc() {}
