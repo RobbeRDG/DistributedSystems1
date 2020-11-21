@@ -31,6 +31,7 @@ public class ServerConnectionImpl implements ServerConnection {
     public void startServerConnection() throws Exception {
         ServerThread serverThread = new ServerThread(port, this);
         serverThread.start();
+        System.out.println("Server started on port " + port);
     }
 
     @Override
