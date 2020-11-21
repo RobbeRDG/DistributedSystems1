@@ -1,9 +1,9 @@
-#Chatservice using Sockets
-##To run:
+# Chatservice using Sockets
+## To run:
 - Server: Run the main method in `Server/src/ServerSide/ServerController/ServerControllerImpl.java`
 - Client: Run the main method in `Client/src/ClientSide/ClientController/ClientControllerImpl.java`
 
-##Socket messages syntax:
+## Socket messages syntax:
 #### Request messages:
 - ###### addUser: `addUser;userName:example_name`
 - ###### removeUser: `removeUser;userName:example_name`

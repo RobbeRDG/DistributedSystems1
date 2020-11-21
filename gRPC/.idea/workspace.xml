@@ -23,20 +23,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1732edfe-d48e-48fa-bace-920c386d85c0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../RMI/readme.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Sockets/readme.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/readme.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../RMI/.idea/RMI.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../RMI/.idea/RMI.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../RMI/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../RMI/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../RMI/Client/Client.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../RMI/Client/Client.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../RMI/Server/Server.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../RMI/Server/Server.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Sockets/.idea/Sockets.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../Sockets/.idea/Sockets.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Sockets/Client/Client.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../Sockets/Client/Client.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Sockets/Readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/../Sockets/Resources/socket_message_syntax.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Sockets/Server/Server.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../Sockets/Server/Server.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Sockets/Server/src/ServerSide/ServerConnection/ServerConnectionImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Sockets/Server/src/ServerSide/ServerConnection/ServerConnectionImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Sockets/readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/../Sockets/readme.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/readme.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
