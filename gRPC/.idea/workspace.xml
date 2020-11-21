@@ -23,7 +23,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1732edfe-d48e-48fa-bace-920c386d85c0" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -93,7 +92,7 @@
       <recent name="C:\Users\robbe\Documents\School\2020-2021\Gedistribueerde systemen\Gedistribueerde systemen 1\Labo\labgrpc\src\main\resources" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.labgrpc [runChatRoomServer]">
+  <component name="RunManager" selected="Gradle.labgrpc [runChatRoomClient]">
     <configuration name="TutorialServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="be.msec.labgrpc.TutorialServer" />
       <module name="labgrpc.main" />
